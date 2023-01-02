@@ -8,3 +8,20 @@ CREATE TABLE "user" (
     "username" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL
 );
+
+CREATE TABLE "teams" (
+    "id" SERIAL PRIMARY KEY,
+    "user_id" INT REFERENCES "user",
+    "owner_name" VARCHAR (80) NOT NULL,
+    "roster_size" INT,
+    "profile_image" VARCHAR (2083)
+);
+
+CREATE TABLE "drafted_players" (
+    "player_id" INT,
+    "team_id" INT REFERENCES "teams",
+    "player_bid" INT NOT NULL,
+    "player_name" VARCHAR (255),
+    "player_image" VARCHAR (2083),
+    "player_position" VARCHAR (255)
+);
