@@ -19,6 +19,9 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Teams from '../Teams/Teams';
+import TeamEditor from '../TeamEditor/TeamEditor';
+import PlayerSelector from '../PlayerSelector/PlayerSelector';
 
 import './App.css';
 
@@ -46,6 +49,30 @@ function App() {
             path="/about"
           >
             <AboutPage />
+          </Route>
+
+          <Route
+            // shows Teams at all times (logged in or not)
+            exact
+            path="/teams"
+          >
+            <Teams />
+          </Route>
+
+          <Route
+            // shows TeamEditor at all times (logged in or not)
+            exact
+            path="/team-editor"
+          >
+            <TeamEditor />
+          </Route>
+
+          <Route
+            // shows TeamEditor at all times (logged in or not)
+            exact
+            path="/player-selector"
+          >
+            <PlayerSelector />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
