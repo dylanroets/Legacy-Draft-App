@@ -17,17 +17,17 @@ router.get('/', (req, res) => {
 });
 
 // POST team route
-router.post('/', (req, res) => {
-    const queryText = `INSERT INTO "teams" (owner_name, roster_size, profile_image)
-    VALUES ($1, $2, $3) RETURNING id`;
-    pool
-    .query(queryText, [owner_name, roster_size, profile_image])
-    .then(() => res.sendStatus(201))
-    .catch((err) => {
-        console.log('Error with POSTing team: ', err);
-        res.sendStatus(500);
-    });
-    });
+// router.post('/', (req, res) => {
+//     const queryText = `INSERT INTO "teams" (owner_name, roster_size, profile_image)
+//     VALUES ($1, $2, $3) RETURNING id`;
+//     pool
+//     .query(queryText, [owner_name, roster_size, profile_image])
+//     .then(() => res.sendStatus(201))
+//     .catch((err) => {
+//         console.log('Error with POSTing team: ', err);
+//         res.sendStatus(500);
+//     });
+//     });
 
 // PUT route 
 
