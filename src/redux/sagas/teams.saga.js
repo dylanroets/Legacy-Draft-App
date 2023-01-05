@@ -1,5 +1,5 @@
 import axios from "axios";
-import { put, take, takeLatest } from "redux-saga/effects";
+import { put, takeLatest } from "redux-saga/effects";
 
 
 function* fetchTeams() {
@@ -17,13 +17,18 @@ function* fetchTeams() {
 function* addTeam(action) {
     try {
         yield axios.post('/api/teams', action.payload)
-        // yield put({ type: '', payload: });
+        yield put({ type: 'FETCH_TEAMS' });
         console.log('in addTeam');
     } catch (err) {
         console.log('Error POSTing team: ', err);
 
     }
 }
+
+// Update a team
+
+
+// Delete a team from the Database
 
 
 
