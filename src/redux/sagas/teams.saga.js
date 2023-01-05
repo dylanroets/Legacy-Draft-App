@@ -13,10 +13,25 @@ function* fetchTeams() {
     }
 }
 
+// POST a new team to the database
+function* addTeam(action) {
+    try {
+        yield axios.post('/api/teams', action.payload)
+        // yield put({ type: '', payload: });
+        console.log('in addTeam');
+    } catch (err) {
+        console.log('Error POSTing team: ', err);
+
+    }
+}
+
+
+
 
 
 function* teamsSaga() {
     yield takeLatest('FETCH_TEAMS', fetchTeams);
+    yield takeLatest('ADD_TEAM', addTeam);
 }
 
 export default teamsSaga;
