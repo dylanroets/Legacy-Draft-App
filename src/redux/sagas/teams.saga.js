@@ -30,6 +30,16 @@ function* addTeam(action) {
 
 // Delete a team from the Database
 
+function* deleteTeam(action) {
+    console.log('action.payload: ', action.payload);
+    try{
+        yield axios.delete('/api/teams/'+ action.payload);
+        yield put({ type: 'FETCH_TEAMS' });
+    } catch (err) {
+        console.log('Error deleting Team: ', err);
+    }
+}
+
 
 
 
@@ -37,6 +47,7 @@ function* addTeam(action) {
 function* teamsSaga() {
     yield takeLatest('FETCH_TEAMS', fetchTeams);
     yield takeLatest('ADD_TEAM', addTeam);
+    yield takeLatest('DELETE_TEAM', deleteTeam);
 }
 
 export default teamsSaga;

@@ -7,9 +7,6 @@ const teamsReducer = (state = [], action) => {
     }
 }
 
-// case 'NEW_TEAM' :
-//     return action.payload
-
 
 // try to access store at state.teams, i think
 export default teamsReducer;

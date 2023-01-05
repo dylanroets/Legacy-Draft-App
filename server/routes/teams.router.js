@@ -1,4 +1,6 @@
 const express = require('express');
+const { default: logger } = require('redux-logger');
+const { default: reduxSaga } = require('redux-saga');
 const pool = require('../modules/pool');
 const router = express.Router();
 
@@ -35,5 +37,18 @@ router.post('/', (req, res) => {
 
 
 // DELETE route
+router.delete('/:id', (req, res) => {
+    const query = `DELETE FROM "teams" WHERE "id" = $1`;
+    // console.log('delete router: ', req.params.id);
+    pool
+    .query(query, [req.params.id])
+    .then(() => {
+        res.sendStatus(200)
+    })
+    .catch((err) => {
+        console.log('Error deleting Team: ', err);
+        res.sendStatus(500);
+    })
+})
 
 module.exports = router;
