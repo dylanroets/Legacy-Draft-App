@@ -85,17 +85,28 @@ function Teams() {
                     <button type='submit' >Add Team</button>
                 </form>
             </div>
-            <h2>Team List</h2>
+            <div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Team Photo</td>
+                        <td>Team Name</td>
+                    </tr>
+                </thead>
             {teams.map((team, i)=> {
                 return (
-                <div team={team} key={i}>
-                    <p>{team.owner_name}</p>
-                    <img src={team.profile_image} height={200} width={200} alt="profile-image" /><br></br>
-                    <button id='edit-players' onClick={() => fetchTeamPlayers(team.id)}>Edit Players</button>
-                    <button id='delete' onClick={() => deleteTeam(team.id)}>Delete</button>
-                </div>
+                <tbody team={team} key={i}>
+                    <tr>
+                        <td><img src={team.profile_image} height={100} width={100} alt="profile-image" /></td>
+                        <td>{team.owner_name}</td>
+                        <td><button id='edit-players' onClick={() => fetchTeamPlayers(team.id)}>Edit Players</button></td>
+                        <td><button id='delete' onClick={() => deleteTeam(team.id)}>Delete</button></td>
+                    </tr>
+                </tbody>
                 );
             })}
+            </table>
+            </div>
         </>
     );
 }
