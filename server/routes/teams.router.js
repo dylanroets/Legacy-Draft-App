@@ -1,6 +1,4 @@
 const express = require('express');
-const { default: logger } = require('redux-logger');
-const { default: reduxSaga } = require('redux-saga');
 const pool = require('../modules/pool');
 const router = express.Router();
 
