@@ -29,6 +29,9 @@ function Teams() {
             type: 'ADD_TEAM',
             payload: { ownerName, rosterSize, profileImage },
         });
+        setOwnerName('')
+        setRosterSize('')
+        setProfileImage('')
     };
 
     const deleteTeam = (team) => {
