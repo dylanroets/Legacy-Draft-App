@@ -10,6 +10,18 @@ function TeamEditor() {
 
   console.log('team editor store: ', store.teamEditor);
 
+  // Edit Player Click Function
+  const editPlayer = (player) => {
+    console.log('edit player: ', player);
+    // dispatch({ type: 'DELETE_PLAYER', payload: team })
+}
+
+  // Delete Player Click Function
+  const deletePlayer = (player) => {
+    console.log('deleting player: ', player);
+    // dispatch({ type: 'DELETE_PLAYER', payload: team })
+}
+
     return (
       <>
         <h2>Team Editor Page</h2>
@@ -17,20 +29,20 @@ function TeamEditor() {
           <table>
             <thead>
               <tr>
-                <td>Team Photo</td>
+                <td>Player Photo</td>
                 <td>Player Name</td>
                 <td>Position</td>
               </tr>
             </thead>
-              {store.map((team, i)=> {
+              {store.map((player, i)=> {
                 return (
                 <tbody key={i}>
                   <tr>
-                    <td><img src={team.player_image} height={80} width={110} alt="team-photo" /></td>
-                    <td>{team.player_name}</td>
-                    <td>{team.player_position}</td>
-                    <td><><button>Edit</button></></td>
-                    <td><><button>Delete</button></></td>
+                    <td><img src={player.player_image} height={80} width={110} alt="team-photo" /></td>
+                    <td>{player.player_name}</td>
+                    <td>{player.player_position}</td>
+                    <td><button id='edit-player' onClick={() => editPlayer(player)}>Edit</button></td>
+                    <td><button id='delete-player' onClick={() => deletePlayer(player.id)}>Delete</button></td>
                   </tr>
                 </tbody>
                 );
