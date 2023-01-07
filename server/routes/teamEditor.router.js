@@ -18,8 +18,20 @@ router.get('/:id', (req, res) => {
     })
 });
 
-
-
+// Team player DELETE
+router.delete('/:id', (req, res) => {
+    const query = `DELETE FROM "drafted_players" WHERE "id" = $1`;
+    console.log('delete player router: ', req.params.id);
+    pool
+    .query(query, [req.params.id])
+    .then(() => {
+        res.sendStatus(200)
+    })
+    .catch((err) => {
+        console.log('Error deleting player from team: ', err);
+        res.sendStatus(500);
+    })
+})
 
 
 module.exports = router;

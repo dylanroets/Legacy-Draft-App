@@ -44,7 +44,7 @@ router.delete('/:id', (req, res) => {
         res.sendStatus(200)
     })
     .catch((err) => {
-        console.log('Error deleting Team: ', err);
+        console.log('Error deleting Team in router: ', err);
         res.sendStatus(500);
     })
 })
