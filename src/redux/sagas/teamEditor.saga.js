@@ -1,6 +1,8 @@
 import axios from "axios";
 import { put, takeLatest } from "redux-saga/effects";
 
+
+// GET players from individual teams with team_id
 function* fetchTeamPlayers(action) {
     console.log(' team players action.payload: ', action.payload);
     try{
@@ -12,9 +14,20 @@ function* fetchTeamPlayers(action) {
     }
 }
 
+// Delete a player from the team
+function* deleteTeamPlayer(action) {
+    console.log(' delete teamPlayer action.payload, ', action.payload);
+    try{
+        yield axios.delete('/api/teamEditor/'+ action.payload);
+    } catch (err) {
+        console.log('Error deleting player from team: ', err);
+    }
+}
+
 
 function* teamEditorSaga() {
     yield takeLatest('FETCH_TEAM_PLAYERS', fetchTeamPlayers);
+    yield takeLatest('DELETE_PLAYER', deleteTeamPlayer);
 }
 
 export default teamEditorSaga;

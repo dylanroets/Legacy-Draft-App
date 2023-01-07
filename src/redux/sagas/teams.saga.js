@@ -36,7 +36,7 @@ function* deleteTeam(action) {
         yield axios.delete('/api/teams/'+ action.payload);
         yield put({ type: 'FETCH_TEAMS' });
     } catch (err) {
-        console.log('Error deleting Team: ', err);
+        console.log('Error deleting Team from saga: ', err);
     }
 }
 
