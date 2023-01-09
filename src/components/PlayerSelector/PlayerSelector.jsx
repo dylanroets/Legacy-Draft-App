@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 function PlayerSelector() {
 
-const store = useSelector((store) => store);
+const searchResult = useSelector((store) => store.search);
 const dispatch = useDispatch();
 
 const [playerSearch, setPlayerSearch] = useState('');
@@ -36,6 +36,16 @@ const searchPlayers = (event) => {
                 />
                 <button type='submit'>Search</button>
             </form>
+            <div>
+                {searchResult.map((player, i)=> {
+                  return (
+                    <div key={i}>
+                      <p>{player.name}</p>
+                      <img src={player.image} height={100} width={140} alt="profile-image" />
+                    </div>
+                  )}
+                )}
+            </div> 
         </>
     );
 }
