@@ -5,7 +5,7 @@ const axios = require('axios');
 
 // Search GET for players
 router.get('/:string', (req, res) => {
-    console.log('search players router: ', req.params.string);
+    // console.log('search players router: ', req.params.string);
     const searchString = req.params.string;
     
 
@@ -20,7 +20,6 @@ router.get('/:string', (req, res) => {
         };
 
         axios.request(options).then(function (response) {
-            console.log(response.data);
             res.send(response.data)
         }).catch(function (error) {
             console.error(error);

@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
-import {useSelector} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 function PlayerSelector() {
 
 const store = useSelector((store) => store);
+const dispatch = useDispatch();
 
 const [playerSearch, setPlayerSearch] = useState('');
 
 const searchPlayers = (event) => {
   event.preventDefault();
   console.log('player searching for: ', playerSearch);
-  // dispatch({
-  //     type: 'GET_SEARCH',
-  //     payload: playerSearch,
-  // });
+  dispatch({
+      type: 'SEARCH_PLAYERS',
+      payload: playerSearch,
+  });
   setPlayerSearch('');
 };
 
