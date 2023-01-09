@@ -24,7 +24,7 @@ function Teams() {
 
     const addTeam = (event) => {
         event.preventDefault();
-        console.log('addTeam clicked');
+        // console.log('addTeam clicked');
         dispatch({
             type: 'ADD_TEAM',
             payload: { ownerName, rosterSize, profileImage },
@@ -40,7 +40,7 @@ function Teams() {
     }
 
     const fetchTeamPlayers = (team) => {
-        console.log('fetching team players: ', team);
+        // console.log('fetching team players: ', team);
         dispatch({ type: 'FETCH_TEAM_PLAYERS', payload: team })
         history.push('/team-editor');
     }

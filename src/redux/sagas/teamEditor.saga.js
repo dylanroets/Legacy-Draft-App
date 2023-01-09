@@ -4,10 +4,10 @@ import { put, takeLatest } from "redux-saga/effects";
 
 // GET players from individual teams with team_id
 function* fetchTeamPlayers(action) {
-    console.log(' team players action.payload: ', action.payload);
+    // console.log(' team players action.payload: ', action.payload);
     try{
         const teamPlayers = yield axios.get('/api/teamEditor/'+ action.payload);
-        console.log('teamPlayers.data: ', teamPlayers);
+        // console.log('teamPlayers.data: ', teamPlayers);
         yield put({ type: 'SET_TEAM_PLAYERS', payload: teamPlayers.data});
     } catch (err) {
         console.log('Error deleting Team: ', err);
@@ -16,9 +16,11 @@ function* fetchTeamPlayers(action) {
 
 // Delete a player from the team
 function* deleteTeamPlayer(action) {
-    console.log(' delete teamPlayer action.payload, ', action.payload);
+    // console.log(' delete teamPlayer action.payload, ', action.payload);
+    // console.log('fetching action.payload.team_id: ', action.payload.team_id);
     try{
-        yield axios.delete('/api/teamEditor/'+ action.payload);
+        yield axios.delete('/api/teamEditor/'+ action.payload.id);
+        yield put({ type: 'FETCH_TEAM_PLAYERS', payload: action.payload.team_id});
     } catch (err) {
         console.log('Error deleting player from team: ', err);
     }

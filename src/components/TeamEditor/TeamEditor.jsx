@@ -8,8 +8,6 @@ function TeamEditor() {
   const dispatch = useDispatch();
   const store = useSelector((store) => store.teamEditor);
 
-  console.log('teamEditor store: ', store);
-
   // Edit Player Click Function
   const editPlayer = (player) => {
     console.log('edit player: ', player);
@@ -18,10 +16,9 @@ function TeamEditor() {
 
   // Delete Player Click Function
   const deletePlayer = (player) => {
-    console.log('deleting player: ', player.id);
-    console.log('setting players: ', player.team_id);
-    dispatch({ type: 'DELETE_PLAYER', payload: player.id})
-    dispatch({ type: 'FETCH_TEAM_PLAYERS', payload: player.team_id})
+    // console.log('deleting player: ', player.id);
+    // console.log('setting players: ', player.team_id);
+    dispatch({ type: 'DELETE_PLAYER', payload: player})
 }
 
     return (
