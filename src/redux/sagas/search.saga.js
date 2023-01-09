@@ -7,8 +7,8 @@ function* searchPlayers(action) {
     // console.log(' team players action.payload: ', action.payload);
     try{
         const searchString = yield axios.get('/api/search/'+ action.payload);
-        console.log('searchString.data: ', searchString);
-        yield put({ type: 'SET_SEARCH_PLAYERS', payload: searchString.data});
+        console.log('searchString: ', searchString.data.response);
+        yield put({ type: 'SET_SEARCH_PLAYERS', payload: searchString.data.response});
     } catch (err) {
         console.log('Error searching player in sagas: ', err);
     }
