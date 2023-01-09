@@ -1,18 +1,41 @@
 import React, { useState } from 'react';
 import {useSelector} from 'react-redux';
 
-// Basic functional component structure for React with default state
-// value setup. When making a new component be sure to replace the
-// component name TemplateFunction with the name for the new component.
+
 function PlayerSelector() {
-  // Using hooks we're creating local state for a "heading" variable with
-  // a default value of 'Functional Component'
+
 const store = useSelector((store) => store);
 
+const [playerSearch, setPlayerSearch] = useState('');
+
+const searchPlayers = (event) => {
+  event.preventDefault();
+  console.log('player searching for: ', playerSearch);
+  // dispatch({
+  //     type: 'GET_SEARCH',
+  //     payload: playerSearch,
+  // });
+  setPlayerSearch('');
+};
+
     return (
-        <div>
-        <h2>Player Selector Page</h2>
-        </div>
+        <>
+          <h2>Player Selector Page</h2>
+          <form onSubmit={searchPlayers}>
+                <h2>Search Players</h2>
+                <input
+                    className="search-field"
+                    type="text"
+                    required
+                    value={playerSearch}
+                    onChange={(event) => {
+                    setPlayerSearch(event.target.value);
+                    }}
+                    placeholder="Search Players..."
+                />
+                <button type='submit'>Search</button>
+            </form>
+        </>
     );
 }
 
