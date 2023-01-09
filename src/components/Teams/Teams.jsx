@@ -40,8 +40,8 @@ function Teams() {
     }
 
     const fetchTeamPlayers = (team) => {
-        // console.log('fetching team players: ', team);
-        dispatch({ type: 'FETCH_TEAM_PLAYERS', payload: team })
+        console.log('fetching team players in teams.jsx: ', team);
+        dispatch({ type: 'FETCH_TEAM_PLAYERS', payload: team.id })
         history.push('/team-editor');
     }
 
@@ -102,7 +102,7 @@ function Teams() {
                     <tr>
                         <td><img src={team.profile_image} height={100} width={100} alt="profile-image" /></td>
                         <td>{team.owner_name}</td>
-                        <td><button id='edit-players' onClick={() => fetchTeamPlayers(team.id)}>Edit Players</button></td>
+                        <td><button id='edit-players' onClick={() => fetchTeamPlayers(team)}>Edit Players</button></td>
                         <td><button id='delete' onClick={() => deleteTeam(team.id)}>Delete</button></td>
                     </tr>
                 </tbody>

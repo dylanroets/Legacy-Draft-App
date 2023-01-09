@@ -7,7 +7,7 @@ function* fetchTeamPlayers(action) {
     // console.log(' team players action.payload: ', action.payload);
     try{
         const teamPlayers = yield axios.get('/api/teamEditor/'+ action.payload);
-        // console.log('teamPlayers.data: ', teamPlayers);
+        console.log('teamPlayers.data: ', teamPlayers.data);
         yield put({ type: 'SET_TEAM_PLAYERS', payload: teamPlayers.data});
     } catch (err) {
         console.log('Error deleting Team: ', err);

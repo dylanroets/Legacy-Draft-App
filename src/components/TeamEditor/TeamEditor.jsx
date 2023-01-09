@@ -7,6 +7,9 @@ function TeamEditor() {
   const id = useParams();
   const dispatch = useDispatch();
   const store = useSelector((store) => store.teamEditor);
+  const teams = useSelector((store) => store.teams);
+
+  console.log('whats in teams: ', teams);
 
   // Edit Player Click Function
   const editPlayer = (player) => {
