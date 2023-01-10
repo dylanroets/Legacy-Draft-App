@@ -41,7 +41,7 @@ function Teams() {
 
     const fetchTeamPlayers = (team) => {
         console.log('fetching team players in teams.jsx: ', team);
-        dispatch({ type: 'FETCH_TEAM_PLAYERS', payload: team.id })
+        dispatch({ type: 'FETCH_TEAM_PLAYERS', payload: team.id });
         history.push('/team-editor');
     }
 
