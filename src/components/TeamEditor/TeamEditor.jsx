@@ -9,8 +9,6 @@ function TeamEditor() {
   const store = useSelector((store) => store.teamEditor);
   const teams = useSelector((store) => store.teams);
 
-  console.log('whats in teams: ', teams);
-
   // Edit Player Click Function
   const editPlayer = (player) => {
     console.log('edit player: ', player);
@@ -31,9 +29,13 @@ function TeamEditor() {
           <table>
             <thead>
               <tr>
-                <td>Player Photo</td>
-                <td>Player Name</td>
-                <td>Position</td>
+                  <td>Player Photo</td>
+                  <td>Player Name</td>
+                  <td>Position</td>
+                  <td>Player Group</td>
+                  <td>Age</td>
+                  <td>Height</td>
+                  <td>Weight</td>
               </tr>
             </thead>
               {store.map((player, i)=> {
@@ -43,6 +45,10 @@ function TeamEditor() {
                     <td><img src={player.player_image} height={80} width={110} alt="team-photo" /></td>
                     <td>{player.player_name}</td>
                     <td>{player.player_position}</td>
+                    <td>{player.player_group}</td>
+                    <td>{player.player_age}</td>
+                    <td>{player.player_height}</td>
+                    <td>{player.player_weight}</td>
                     <td><button id='edit-player' onClick={() => editPlayer(player)}>Edit</button></td>
                     <td><button id='delete-player' onClick={() => deletePlayer(player)}>Delete</button></td>
                   </tr>

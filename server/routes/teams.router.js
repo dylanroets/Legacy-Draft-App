@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
         console.log('Error with POSTing team: ', err);
         res.sendStatus(500);
     });
-    });
+});
 
 // PUT route 
 
