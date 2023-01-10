@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 
@@ -9,10 +9,12 @@ const dispatch = useDispatch();
 
 const [playerSearch, setPlayerSearch] = useState('');
 const [teamId, setNewTeamId]= useState('');
-//setting team id for proper player placement
-const setTeamId = (event) => {
-  setNewTeamId(event.target.value);
-}
+
+// Setting the teams store
+useEffect(() => {
+  dispatch({type: 'FETCH_TEAMS'})
+}, []);
+
 // grabbing and mapping over selections for the drop down menu
 const teams = useSelector((store) => store.teams);
 
@@ -88,7 +90,8 @@ const addPlayer = (player) => {
                       <td>{player.height}</td>
                       <td>{player.weight}</td>
                       <td>
-                      <select name="teams\\" id="teams" onClick={(event) => setTeamId(event)}>
+                      <select name="teams" id="teams" onChange={(event) => setNewTeamId(event.target.value)}>
+                            <option key={i} value="">Select a Team</option>
                         {teams.map((team, i) => {
                           return (
                             <option key={i} value={team.id}>{team.owner_name}</option>
