@@ -27,4 +27,14 @@ router.get('/:string', (req, res) => {
 });
 
 
+// Post route for new players found in the search
+// Need to send relevant player info along with..
+// the exact team that I'm POST in to
+router.post('/', (req, res) => {
+    console.log('add player router.post: ', req.body);
+    const player = req.body
+
+})
+
+
 module.exports = router;

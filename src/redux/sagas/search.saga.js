@@ -14,8 +14,19 @@ function* searchPlayers(action) {
     }
 }
 
+// Adding an individual player from the API search to a specific team
+function* addPlayer(action) {
+    console.log('addplayer saga action.payload: ', action.payload);
+    try {
+        yield axios.post('/api/search', action.payload)
+    } catch (err) {
+        console.log('Error POSTing player: ', err);
+    }
+}
+
 function* searchSaga() {
     yield takeLatest('SEARCH_PLAYERS', searchPlayers);
+    yield takeLatest('ADD_NEW_PLAYER', addPlayer);
 
 }
 
