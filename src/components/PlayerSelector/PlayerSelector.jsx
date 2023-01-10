@@ -32,6 +32,7 @@ const addPlayer = (player) => {
   dispatch({ type: 'ADD_NEW_PLAYER', 
     payload: 
       { team_id: teamId,
+        player_id: player.id,
         player_image: player.image,
         player_name: player.name,
         player_position: player.position,
@@ -88,13 +89,12 @@ const addPlayer = (player) => {
                       <td>{player.weight}</td>
                       <td>
                       <select name="teams\\" id="teams" onClick={(event) => setTeamId(event)}>
-                                <option value=''></option>
-                                <option value="1">Packers</option>
-                                <option value="2">Vikings</option>
-                                <option value="3">Dylan</option>
-                                <option value="4">Detroit</option>
-                                <option value="5">Chicago</option>
-                            </select>
+                        {teams.map((team, i) => {
+                          return (
+                            <option key={i} value={team.id}>{team.owner_name}</option>
+                          )}
+                        )}
+                        </select>
                       </td>
                       <td><button id='add-player' onClick={() => addPlayer(player)}>Add</button></td>
                     </tr>
