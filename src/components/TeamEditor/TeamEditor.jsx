@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -14,6 +14,11 @@ function TeamEditor() {
     console.log('edit player: ', player);
     // dispatch({ type: 'DELETE_PLAYER', payload: team })
 }
+
+  // useEffect(() => {
+  //   dispatch({type: 'FETCH_TEAM_PLAYERS'})
+  // }, []);
+
 
   // Delete Player Click Function
   const deletePlayer = (player) => {

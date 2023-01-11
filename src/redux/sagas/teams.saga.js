@@ -20,15 +20,21 @@ function* addTeam(action) {
         yield put({ type: 'FETCH_TEAMS' });
     } catch (err) {
         console.log('Error POSTing team: ', err);
-
     }
 }
 
 // Update a team
-
+function* editTeam(action){
+    console.log('Saga Update Team: ', action.payload);
+    try {
+        yield axios.put('/api/teams', action.payload)
+        // maybe need to add fetch after put
+    } catch (err) {
+        console.log('Error updating Team: ', err);
+    }
+}
 
 // Delete a team from the Database
-
 function* deleteTeam(action) {
     console.log('action.payload: ', action.payload);
     try{
@@ -39,13 +45,10 @@ function* deleteTeam(action) {
     }
 }
 
-
-
-
-
 function* teamsSaga() {
     yield takeLatest('FETCH_TEAMS', fetchTeams);
     yield takeLatest('ADD_TEAM', addTeam);
+    yield takeLatest('EDIT_TEAM', editTeam);
     yield takeLatest('DELETE_TEAM', deleteTeam);
 }
 
