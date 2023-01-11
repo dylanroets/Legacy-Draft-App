@@ -21,11 +21,11 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 // POST team route
 router.post('/', rejectUnauthenticated, (req, res) => {
-    const query = `INSERT INTO "teams" (owner_name, roster_size, profile_image)
-    VALUES ($1, $2, $3)`;
+    const query = `INSERT INTO "teams" (owner_name, roster_size, profile_image, team_salary)
+    VALUES ($1, $2, $3, $4)`;
     console.log('req.body: ', req.body);
     pool
-    .query(query, [req.body.ownerName, req.body.rosterSize, req.body.profileImage])
+    .query(query, [req.body.ownerName, req.body.rosterSize, req.body.profileImage, req.body.teamSalary])
     .then(() => res.sendStatus(201))
     .catch((err) => {
         console.log('Error with POSTing team: ', err);

@@ -20,7 +20,6 @@ function* addTeam(action) {
         yield put({ type: 'FETCH_TEAMS' });
     } catch (err) {
         console.log('Error POSTing team: ', err);
-
     }
 }
 
@@ -35,9 +34,7 @@ function* editTeam(action){
     }
 }
 
-
 // Delete a team from the Database
-
 function* deleteTeam(action) {
     console.log('action.payload: ', action.payload);
     try{
@@ -48,13 +45,10 @@ function* deleteTeam(action) {
     }
 }
 
-
-
-
-
 function* teamsSaga() {
     yield takeLatest('FETCH_TEAMS', fetchTeams);
     yield takeLatest('ADD_TEAM', addTeam);
+    yield takeLatest('EDIT_TEAM', editTeam);
     yield takeLatest('DELETE_TEAM', deleteTeam);
 }
 
