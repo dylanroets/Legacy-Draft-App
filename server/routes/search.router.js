@@ -2,9 +2,12 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 const axios = require('axios');
+const {
+    rejectUnauthenticated,
+    } = require('../modules/authentication-middleware');
 
 // Search GET for players
-router.get('/:string', (req, res) => {
+router.get('/:string', rejectUnauthenticated, (req, res) => {
     // console.log('search players router: ', req.params.string);
     const searchString = req.params.string;
     
@@ -30,7 +33,7 @@ router.get('/:string', (req, res) => {
 // Post route for new players found in the search
 // Need to send relevant player info along with..
 // the exact team that I'm POST in to
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('add player router.post: ', req.body);
     const player = req.body
     const query = `INSERT INTO "drafted_players" (team_id, player_id, player_name, player_position, player_group, player_age, player_weight, player_height, player_image)

@@ -1,9 +1,12 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+    rejectUnauthenticated,
+    } = require('../modules/authentication-middleware');
 
 // GET route for teams in the database
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
     const teamsQuery = `SELECT * FROM teams ORDER BY "owner_name" ASC`;
     
@@ -17,7 +20,7 @@ router.get('/', (req, res) => {
 });
 
 // POST team route
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     const query = `INSERT INTO "teams" (owner_name, roster_size, profile_image)
     VALUES ($1, $2, $3)`;
     console.log('req.body: ', req.body);
@@ -35,7 +38,7 @@ router.post('/', (req, res) => {
 
 
 // DELETE route
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const query = `DELETE FROM "teams" WHERE "id" = $1`;
     // console.log('delete router: ', req.params.id);
     pool
