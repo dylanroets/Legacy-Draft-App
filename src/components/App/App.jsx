@@ -51,29 +51,29 @@ function App() {
             <AboutPage />
           </Route>
 
-          <Route
+          <ProtectedRoute
             // shows Teams at all times (logged in or not)
             exact
             path="/teams"
           >
             <Teams />
-          </Route>
+          </ProtectedRoute>
 
-          <Route
+          <ProtectedRoute
             // shows TeamEditor at all times (logged in or not)
             exact
             path="/team-editor"
           >
             <TeamEditor />
-          </Route>
+          </ProtectedRoute>
 
-          <Route
+          <ProtectedRoute
             // shows TeamEditor at all times (logged in or not)
             exact
             path="/player-selector"
           >
             <PlayerSelector />
-          </Route>
+          </ProtectedRoute>
 
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.

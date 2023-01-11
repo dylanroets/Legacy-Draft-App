@@ -1,11 +1,14 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+    rejectUnauthenticated,
+    } = require('../modules/authentication-middleware');
 
 // teamEditor router is for CRUDing the players within a specific team
 
 // team player GET
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
     // GET route code here
     const query = `SELECT * FROM "drafted_players" WHERE "team_id" = $1;`;
     console.log('get players router: ', req.params.id);
@@ -19,7 +22,7 @@ router.get('/:id', (req, res) => {
 });
 
 // Team player DELETE
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const query = `DELETE FROM "drafted_players" WHERE "id" = $1`;
     console.log('delete player router: ', req.params.id);
     pool
