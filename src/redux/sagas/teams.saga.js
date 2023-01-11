@@ -25,6 +25,15 @@ function* addTeam(action) {
 }
 
 // Update a team
+function* editTeam(action){
+    console.log('Saga Update Team: ', action.payload);
+    try {
+        yield axios.put('/api/teams', action.payload)
+        // maybe need to add fetch after put
+    } catch (err) {
+        console.log('Error updating Team: ', err);
+    }
+}
 
 
 // Delete a team from the Database
