@@ -33,19 +33,24 @@ function Nav() {
             </Link>
 
             <LogOutButton className="navLink" />
+
+            <Link className="navLink" to="/teams">
+              Teams
+            </Link>
+
+            <Link className="navLink" to="/team-editor">
+              Team Editor
+            </Link>
+
+            <Link className="navLink" to="/player-selector">
+              Player Selector
+            </Link>
+
+            <Link className="navLink" to="/edit-team-info">
+              Edit Team
+            </Link>
           </>
         )}
-        <Link className="navLink" to="/teams">
-          Teams
-        </Link>
-
-        <Link className="navLink" to="/team-editor">
-          Team Editor
-        </Link>
-
-        <Link className="navLink" to="/player-selector">
-          Player Selector
-        </Link>
 
         <Link className="navLink" to="/about">
           About

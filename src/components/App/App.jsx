@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import Teams from '../Teams/Teams';
 import TeamEditor from '../TeamEditor/TeamEditor';
 import PlayerSelector from '../PlayerSelector/PlayerSelector';
+import EditTeamInfo from '../EditTeamInfo/EditTeamInfo';
 
 import './App.css';
 
@@ -52,7 +53,6 @@ function App() {
           </Route>
 
           <ProtectedRoute
-            // shows Teams at all times (logged in or not)
             exact
             path="/teams"
           >
@@ -60,7 +60,6 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // shows TeamEditor at all times (logged in or not)
             exact
             path="/team-editor"
           >
@@ -68,7 +67,13 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // shows TeamEditor at all times (logged in or not)
+            exact
+            path="/edit-team-info"
+          >
+            <EditTeamInfo />
+          </ProtectedRoute>
+
+          <ProtectedRoute
             exact
             path="/player-selector"
           >

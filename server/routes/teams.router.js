@@ -19,6 +19,19 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     })
 });
 
+router.get('/:id', rejectUnauthenticated, (req, res) => {
+    // GET route code here
+    const query = `SELECT * FROM "teams" WHERE "id" = $1;`;
+    console.log('get specific team router: ', req.params.id);
+    pool
+    .query(query, [req.params.id])
+    .then(result => {res.send(result.rows)})
+    .catch(err => {
+        console.log('Error in GET team with id', err);
+        res.sendStatus(500)
+    })
+});
+
 // POST team route
 router.post('/', rejectUnauthenticated, (req, res) => {
     const query = `INSERT INTO "teams" (owner_name, roster_size, profile_image, team_salary)

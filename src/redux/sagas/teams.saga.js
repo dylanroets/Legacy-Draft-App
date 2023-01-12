@@ -13,6 +13,18 @@ function* fetchTeams() {
     }
 }
 
+//Getting a single teams info with the ID
+function* fetchTeamInfo(action) {
+    // console.log(' team players action.payload: ', action.payload);
+    try{
+        const team = yield axios.get('/api/teams/'+ action.payload);
+        console.log('teamPlayers.data: ', team.data);
+        yield put({ type: 'SET_TEAM_INFO', payload: team.data});
+    } catch (err) {
+        console.log('Error deleting Team: ', err);
+    }
+}
+
 // POST a new team to the database
 function* addTeam(action) {
     try {
@@ -47,6 +59,7 @@ function* deleteTeam(action) {
 
 function* teamsSaga() {
     yield takeLatest('FETCH_TEAMS', fetchTeams);
+    yield takeLatest('FETCH_TEAM_INFO', fetchTeamInfo);
     yield takeLatest('ADD_TEAM', addTeam);
     yield takeLatest('EDIT_TEAM', editTeam);
     yield takeLatest('DELETE_TEAM', deleteTeam);
