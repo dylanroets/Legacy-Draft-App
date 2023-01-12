@@ -9,20 +9,29 @@ function EditTeamInfo() {
     // also edited the route to reflect the exact path + ID
     const {ID} = useParams();
     const dispatch = useDispatch();
-    const store = useSelector((store) => store.edit);
+    const teamEdit = useSelector((store) => store.edit);
 
     useEffect(() => {
-        dispatch({ type: 'FETCH_TEAM_INFO', payload: ID })
-    }, [editTeam]);
+        dispatch({ type: 'FETCH_TEAM_INFO', payload: ID });
+    }, []);
 
-    const editTeam = () => {
-        console.log('store: ', store);;
-        console.log('ownerName ', ownerName);
-        // dispatch({ type: 'DELETE_PLAYER', payload: team })
-        event.preventDefault();
+
+    if(teamEdit[0] != undefined){
+    }else{
+
     }
 
-    const [ownerName, setOwnerName] = useState(store)
+    const updateTeam = () => {
+        event.preventDefault();
+        console.log('updateTeam log: ', teamEdit);
+        // dispatch({ type: 'UPDATE_OWNER_NAME', payload:  });
+        // dispatch({ type: 'UPDATE_ROSTER_SIZE', payload:  });
+        // dispatch({ type: 'UPDATE_TEAM_SALARY', payload:  });
+        // dispatch({ type: 'UPDATE_PROFILE_IMAGE', payload:  });
+    }
+
+
+    
 
     // history.push button to send the data to component
     // see the information from the team i click on
@@ -34,43 +43,45 @@ function EditTeamInfo() {
     return(
         <>
             <h2>Update Individual Team Data</h2>
-            {/* <div>
-                <table>
-                    <thead>
-                    <tr>
-                        <td>Team Photo</td>
-                        <td>Team Name</td>
-                        <td>Team Roster</td>
-                        <td>Team Roster</td>
-                    </tr>
-                    </thead>
-                    {teams.map((team, i)=> {
-                        return (
-                        <tbody key={i}>
-                        <tr>
-                            <td><img src={team.profile_image} height={100} width={100} alt="team-photo" /></td>
-                            <td>{team.owner_name}</td>
-                            <td>{team.roster_size}</td>
-                            <td>{team.team_salary}</td>
-                            <td><button id='edit-team' onClick={() => editTeam(team)}>Edit</button></td>
-                            <td><button id='delete-team'>Delete</button></td>
-                        </tr>
-                        </tbody>
-                        );
-                    })}
-                </table>
-            </div> */}
             <div>
-                <form>
+                <form onSubmit={updateTeam}>
                     <label> Owner Name:
                         <input 
                             type="text" 
                             name='owner_name'
-                            defaultValue=''
-                            onChange={(event) => setOwnerName(event.target.value)}
+                            required
+                            value={teamEdit.owner_name}
+                            onChange={(event) => dispatch({type: 'UPDATE_OWNER_NAME', payload: event.target.value}) }
                         />
                     </label>
-                    <button id='edit-team' onClick={() => editTeam()}>Edit</button>
+                    <label> Roster Size:
+                        <input 
+                            type="number" 
+                            name='roster_size'
+                            required
+                            value={teamEdit.roster_size}
+                            onChange={(event) => dispatch({type: 'UPDATE_ROSTER_SIZE', payload: event.target.value}) }
+                        />
+                    </label>
+                    <label> Team Salary:
+                        <input 
+                            type="number" 
+                            name='team_salary'
+                            required
+                            value={teamEdit.team_salary}
+                            onChange={(event) => dispatch({type: 'UPDATE_TEAM_SALARY', payload: event.target.value}) }
+                        />
+                    </label>
+                    <label> Profile Image URL:
+                        <input 
+                            type="text" 
+                            name='owner_name'
+                            required
+                            value={teamEdit.profile_image}
+                            onChange={(event) => dispatch({type: 'UPDATE_PROFILE_IMAGE', payload: event.target.value}) }
+                        />
+                    </label>
+                    <button id='edit-team' onClick={() => updateTeam()}>Update</button>
                 </form>
             </div>
             
