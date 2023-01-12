@@ -46,9 +46,6 @@ function Nav() {
               Player Selector
             </Link>
 
-            <Link className="navLink" to="/edit-team-info">
-              Edit Team
-            </Link>
           </>
         )}
 
