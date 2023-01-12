@@ -22,7 +22,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.get('/:id', rejectUnauthenticated, (req, res) => {
     // GET route code here
     const query = `SELECT * FROM "teams" WHERE "id" = $1;`;
-    console.log('get specific team router: ', req.params.id);
+    console.log('get specific team router id: ', req.params.id);
     pool
     .query(query, [req.params.id])
     .then(result => {res.send(result.rows)})
