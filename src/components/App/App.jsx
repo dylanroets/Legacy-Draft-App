@@ -68,7 +68,7 @@ function App() {
 
           <ProtectedRoute
             exact
-            path="/edit-team-info"
+            path="/edit-team-info/:ID"
           >
             <EditTeamInfo />
           </ProtectedRoute>

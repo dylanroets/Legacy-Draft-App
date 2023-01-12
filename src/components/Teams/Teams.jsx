@@ -54,7 +54,7 @@ function Teams() {
     const editTeamInfo = (team) => {
         console.log('sending in edit with team: ', team);
         dispatch({ type: 'FETCH_TEAM_INFO', payload: team.id });
-        history.push('/edit-team-info');
+        history.push('/edit-team-info/' + team.id);
     }
 
 
