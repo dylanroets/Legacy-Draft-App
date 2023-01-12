@@ -43,20 +43,18 @@ function Teams() {
         dispatch({ type: 'DELETE_TEAM', payload: team })
     }
 
+    // fetches player list of individual team and push to another component to map over them
     const fetchTeamPlayers = (team) => {
         console.log('fetching team players in teams.jsx: ', team);
         dispatch({ type: 'FETCH_TEAM_PLAYERS', payload: team.id });
         history.push('/team-editor');
     }
 
-    const handleEditOpen = (team) => {
-        console.log('what in this team for editing? ', team );
-        console.log('editOpen? ', editOpen);
-        setEditOpen(false)
-    }
-
-    const handleEditClosed = (team) => {
-        setEditOpen(true)
+    // grabs Team info data and pushes to new component to edit the team details
+    const editTeamInfo = (team) => {
+        console.log('sending in edit with team: ', team);
+        dispatch({ type: 'FETCH_TEAM_INFO', payload: team.id });
+        history.push('/edit-team-info');
     }
 
 
@@ -65,7 +63,6 @@ function Teams() {
         <>
             <div>
                 <h2>Teams Page</h2>
-                <input type="username" className="edit-userName" defaultValue={teams.owner_name}></input>
                 <form onSubmit={addTeam}>
                     <input 
                     id='ownerName-input'
@@ -129,12 +126,12 @@ function Teams() {
                 <tbody team={team} key={i}>
                     <tr>
                         <td><img src={team.profile_image} height={100} width={100} alt="profile-image" /></td>
-                        <td>{editOpen ? <td>{team.owner_name}</td> : <input type="text" defaultValue={team.owner_name}></input>}</td>
-                        <td>{editOpen ? <td>{team.roster_size}</td> : <input type="text" defaultValue={team.roster_size}></input>}</td>
-                        <td>{editOpen ? <td>{team.team_salary}</td> : <input type="text" defaultValue={team.team_salary}></input>}</td>
-                        <td>{editOpen ? <button onClick={() => handleEditOpen(team)}>Edit 🖊</button> : <button onClick={() => handleEditClosed(team)}>Cancel ❌</button>}</td>
-                        <td>{editOpen ? <button id='view-players' onClick={() => fetchTeamPlayers(team)}>View Team</button> : <button>Save ✅</button>}</td>
-                        <td>{editOpen ? <button id='delete' onClick={() => deleteTeam(team.id)}>Delete</button> : <td></td>}</td>
+                        <td>{team.owner_name}</td>
+                        <td>{team.roster_size}</td>
+                        <td>{team.team_salary}</td>
+                        <td><button onClick={() => editTeamInfo(team)}>Edit 🖊</button></td>
+                        <td><button id='view-players' onClick={() => fetchTeamPlayers(team)}>View Team</button></td>
+                        <td><button id='delete' onClick={() => deleteTeam(team.id)}>Delete</button></td>
                     </tr>
                 </tbody>
                 );

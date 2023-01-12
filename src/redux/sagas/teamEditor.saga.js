@@ -10,7 +10,7 @@ function* fetchTeamPlayers(action) {
         console.log('teamPlayers.data: ', teamPlayers.data);
         yield put({ type: 'SET_TEAM_PLAYERS', payload: teamPlayers.data});
     } catch (err) {
-        console.log('Error deleting Team: ', err);
+        console.log('Error fetching team players: ', err);
     }
 }
 
