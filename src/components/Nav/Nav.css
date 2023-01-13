@@ -14,8 +14,9 @@
 }
 
 .nav-title {
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 27px;
+  font-weight: 200;
+  font-family: Palatino, Georgia, 'Times New Roman', Times, serif;
   color: #f2f2f2;
   padding-left: 10px;
   margin: 0;
