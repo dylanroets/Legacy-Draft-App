@@ -5,15 +5,16 @@ import './EditTeamInfo.css';
 
 function EditTeamInfo() {
 
-    // Added an ID along with the history.push form the teams page
-    // also edited the route to reflect the exact path + ID
     const {ID} = useParams();
     const dispatch = useDispatch();
+    const history = useHistory();
     const teamEdit = useSelector((store) => store.edit);
     console.log('local teamEdit:', teamEdit);
 
+
     useEffect(() => {
         dispatch({ type: 'FETCH_TEAM_INFO', payload: ID });
+        console.log('here i am')
     }, []);
 
     if(teamEdit[0] != undefined){
@@ -24,19 +25,14 @@ function EditTeamInfo() {
         event.preventDefault();
         console.log('ownerName: ', teamEdit);
         dispatch({ type: 'UPDATE_NEW_TEAM', payload: teamEdit });
-
+        history.push('/teams');
     }
-
-    // history.push button to send the data to component
-    // see the information from the team i click on
-    // write SQL statement 
-    // button or confirmation to send action type to saga/DB
-
 
 
     return(
         <>
             <h2>Update Individual Team Data</h2>
+            {console.log('in render')}
             <div>
                 <form onSubmit={updateTeam}>
                     <label> Owner Name:
