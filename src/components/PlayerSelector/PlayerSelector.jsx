@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
+import Swal from 'sweetalert2'
 
 function PlayerSelector() {
 
@@ -30,6 +30,22 @@ const searchPlayers = (event) => {
 
 //Pulling player specific data for adding players to teams in the database
 const addPlayer = (player) => {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+  
+  Toast.fire({
+    icon: 'success',
+    title: 'Player added successfully'
+  })
   console.log('add player data: ', player);
   dispatch({ type: 'ADD_NEW_PLAYER', 
     payload: 

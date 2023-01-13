@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import logger from 'redux-logger';
+import Swal from 'sweetalert2'
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -13,7 +13,6 @@ function Teams() {
     const [rosterSize, setRosterSize] = useState('')
     const [teamSalary, setTeamSalary] = useState('')
     const [profileImage, setProfileImage] = useState('')
-    const [editOpen, setEditOpen] = useState(true);
 
     // Using hooks we're creating local state for a "heading" variable with
     // a default value of 'Functional Component'
@@ -39,8 +38,24 @@ function Teams() {
     };
 
     const deleteTeam = (team) => {
-        // console.log('deleting team: ', team);
-        dispatch({ type: 'DELETE_TEAM', payload: team })
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Team deletes are permanent!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete team!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch({ type: 'DELETE_TEAM', payload: team })
+                Swal.fire(
+                    'Deleted!',
+                    'The team has been deleted.',
+                    'success'
+            )
+            }
+        })
     }
 
     // fetches player list of individual team and push to another component to map over them
@@ -101,7 +116,6 @@ function Teams() {
                     type='text'
                     placeholder='Image URL...'
                     value={profileImage}
-                    required
                     onChange={(event) => {
                         setProfileImage(event.target.value);
                     }}             

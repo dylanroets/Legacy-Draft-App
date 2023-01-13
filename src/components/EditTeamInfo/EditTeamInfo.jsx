@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './EditTeamInfo.css';
+import Swal from 'sweetalert2'
 
 function EditTeamInfo() {
 
@@ -22,6 +23,13 @@ function EditTeamInfo() {
     }
 
     const updateTeam = (event) => {
+        Swal.fire({
+            position: 'middle-end',
+            icon: 'success',
+            title: 'The Team has been updated',
+            showConfirmButton: false,
+            timer: 1500
+        })
         event.preventDefault();
         console.log('ownerName: ', teamEdit);
         dispatch({ type: 'UPDATE_NEW_TEAM', payload: teamEdit });
