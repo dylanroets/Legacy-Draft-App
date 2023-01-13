@@ -10,28 +10,22 @@ function EditTeamInfo() {
     const {ID} = useParams();
     const dispatch = useDispatch();
     const teamEdit = useSelector((store) => store.edit);
+    console.log('local teamEdit:', teamEdit);
 
     useEffect(() => {
         dispatch({ type: 'FETCH_TEAM_INFO', payload: ID });
     }, []);
 
-
     if(teamEdit[0] != undefined){
     }else{
-
     }
 
-    const updateTeam = () => {
+    const updateTeam = (event) => {
         event.preventDefault();
-        console.log('updateTeam log: ', teamEdit);
-        // dispatch({ type: 'UPDATE_OWNER_NAME', payload:  });
-        // dispatch({ type: 'UPDATE_ROSTER_SIZE', payload:  });
-        // dispatch({ type: 'UPDATE_TEAM_SALARY', payload:  });
-        // dispatch({ type: 'UPDATE_PROFILE_IMAGE', payload:  });
+        console.log('ownerName: ', teamEdit);
+        dispatch({ type: 'UPDATE_NEW_TEAM', payload: teamEdit });
+
     }
-
-
-    
 
     // history.push button to send the data to component
     // see the information from the team i click on
@@ -51,7 +45,10 @@ function EditTeamInfo() {
                             name='owner_name'
                             required
                             value={teamEdit.owner_name}
-                            onChange={(event) => dispatch({type: 'UPDATE_OWNER_NAME', payload: event.target.value}) }
+                            onChange={(event) => dispatch({
+                                type: 'UPDATE_OWNER_NAME',
+                                payload: event.target.value
+                            })}
                         />
                     </label>
                     <label> Roster Size:
@@ -60,7 +57,10 @@ function EditTeamInfo() {
                             name='roster_size'
                             required
                             value={teamEdit.roster_size}
-                            onChange={(event) => dispatch({type: 'UPDATE_ROSTER_SIZE', payload: event.target.value}) }
+                            onChange={(event) => dispatch({
+                                type: 'UPDATE_ROSTER_SIZE', 
+                                payload: event.target.value
+                            })}
                         />
                     </label>
                     <label> Team Salary:
@@ -69,7 +69,10 @@ function EditTeamInfo() {
                             name='team_salary'
                             required
                             value={teamEdit.team_salary}
-                            onChange={(event) => dispatch({type: 'UPDATE_TEAM_SALARY', payload: event.target.value}) }
+                            onChange={(event) => dispatch({
+                                type: 'UPDATE_TEAM_SALARY', 
+                                payload: event.target.value
+                            })}
                         />
                     </label>
                     <label> Profile Image URL:
@@ -78,7 +81,10 @@ function EditTeamInfo() {
                             name='owner_name'
                             required
                             value={teamEdit.profile_image}
-                            onChange={(event) => dispatch({type: 'UPDATE_PROFILE_IMAGE', payload: event.target.value}) }
+                            onChange={(event) => dispatch({
+                                type: 'UPDATE_PROFILE_IMAGE', 
+                                payload: event.target.value
+                            })}
                         />
                     </label>
                     <button id='edit-team' onClick={() => updateTeam()}>Update</button>

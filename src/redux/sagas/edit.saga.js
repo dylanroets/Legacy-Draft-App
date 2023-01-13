@@ -2,7 +2,7 @@ import axios from "axios";
 import { put, takeLatest } from "redux-saga/effects";
 
 
-// updating single teams descriptive data
+// updating single teams descriptive data with object
 function* updateTeam(action){
     console.log('Saga Update Team: ', action.payload);
     try {
@@ -13,10 +13,8 @@ function* updateTeam(action){
     }
 }
 
-
 function* editSaga() {
-    yield takeLatest('UPDATE_OWNER_NAME', updateTeam)
-
+    yield takeLatest('UPDATE_NEW_TEAM', updateTeam)
 
 }
 

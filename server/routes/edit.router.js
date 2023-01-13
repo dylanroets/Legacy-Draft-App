@@ -8,6 +8,7 @@ const {
 
     // PUT route for team edit
     router.put('/', rejectUnauthenticated, (req, res) => {
+        console.log(' team edit req.body: ', req.body);
 
     });
 
