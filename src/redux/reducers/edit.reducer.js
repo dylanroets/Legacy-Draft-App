@@ -3,13 +3,13 @@ const editReducer = (state = {}, action) => {
         case 'SET_TEAM_INFO':
             return action.payload[0];
         case 'UPDATE_OWNER_NAME':
-            return action.payload;
+            return {...state, owner_name: action.payload};
         case 'UPDATE_ROSTER_SIZE':
-            return action.payload;
+            return {...state, roster_size: action.payload};
         case 'UPDATE_TEAM_SALARY':
-            return action.payload;
+            return {...state, team_salary: action.payload}
         case 'UPDATE_PROFILE_IMAGE':
-            return action.payload;        
+            return {...state, profile_image: action.payload}      
         default:
             return state;
     }
