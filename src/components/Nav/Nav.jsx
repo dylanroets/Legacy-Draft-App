@@ -32,8 +32,6 @@ function Nav() {
               Info Page
             </Link>
 
-            <LogOutButton className="navLink" />
-
             <Link className="navLink" to="/teams">
               Teams
             </Link>
@@ -45,6 +43,8 @@ function Nav() {
             <Link className="navLink" to="/player-selector">
               Player Selector
             </Link>
+
+            <LogOutButton className="navLink" />
 
           </>
         )}
