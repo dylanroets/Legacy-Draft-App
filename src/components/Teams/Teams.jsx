@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import Swal from 'sweetalert2'
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -121,7 +125,9 @@ function Teams() {
                     }}             
                     >               
                     </input>
-                    <button type='submit' >Add Team</button>
+                    <Box sx={{ '& button': { m: 1 } }}>
+                    <Button variant="contained" type='submit' size="small">Add Team</Button>
+                    </Box>
                 </form>
             </div>
             <div>
@@ -138,11 +144,11 @@ function Teams() {
                 return (
                 <tbody team={team} key={i}>
                     <tr>
-                        <td><img src={team.profile_image} height={100} width={100} alt="profile-image" /></td>
+                        <td><Stack direction="row" spacing={2}><Avatar alt="team photo" src={team.profile_image} sx={{ width: 75, height: 75 }}/></Stack></td>
                         <td>{team.owner_name}</td>
                         <td>{team.roster_size}</td>
                         <td>{team.team_salary}</td>
-                        <td><button onClick={() => editTeamInfo(team)}>Edit 🖊</button></td>
+                        <td><button onClick={() => editTeamInfo(team)}>Edit</button></td>
                         <td><button id='view-players' onClick={() => fetchTeamPlayers(team)}>View Team</button></td>
                         <td><button id='delete' onClick={() => deleteTeam(team.id)}>Delete</button></td>
                     </tr>

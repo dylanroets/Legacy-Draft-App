@@ -9,8 +9,9 @@ function Nav() {
 
   return (
     <div className="nav">
+      <img id="frame" width={60} src="/images/app-logo.png" />
       <Link to="/home">
-        <h2 className="nav-title">Legacy Draft App</h2>
+        <h2 className="nav-title">LEGACY🏈DRAFT</h2>
       </Link>
       <div>
         {/* If no user is logged in, show these links */}
@@ -32,8 +33,6 @@ function Nav() {
               Info Page
             </Link>
 
-            <LogOutButton className="navLink" />
-
             <Link className="navLink" to="/teams">
               Teams
             </Link>
@@ -45,6 +44,8 @@ function Nav() {
             <Link className="navLink" to="/player-selector">
               Player Selector
             </Link>
+
+            <LogOutButton className="navLink" />
 
           </>
         )}
