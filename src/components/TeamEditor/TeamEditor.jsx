@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import Swal from 'sweetalert2'
 
 function TeamEditor() {
 
@@ -22,9 +23,19 @@ function TeamEditor() {
 
   // Delete Player Click Function
   const deletePlayer = (player) => {
-    // console.log('deleting player: ', player.id);
-    // console.log('setting players: ', player.team_id);
-    dispatch({ type: 'DELETE_PLAYER', payload: player})
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "Removing this player is permanent!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, remove player!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch({ type: 'DELETE_PLAYER', payload: player})
+        }
+    })
 }
 
     return (
@@ -55,7 +66,7 @@ function TeamEditor() {
                     <td>{player.player_height}</td>
                     <td>{player.player_weight}</td>
                     <td><button id='edit-player' onClick={() => editPlayer(player)}>Edit</button></td>
-                    <td><button id='delete-player' onClick={() => deletePlayer(player)}>Delete</button></td>
+                    <td><button id='delete-player' onClick={() => deletePlayer(player)}>Remove</button></td>
                   </tr>
                 </tbody>
                 );
