@@ -6,6 +6,15 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -62,6 +71,26 @@ function Teams() {
         })
     }
 
+    const StyledTableCell = styled(TableCell)(({ theme }) => ({
+        [`&.${tableCellClasses.head}`]: {
+            backgroundColor: theme.palette.common.black,
+            color: theme.palette.common.white,
+        },
+        [`&.${tableCellClasses.body}`]: {
+            fontSize: 14,
+        },
+    }));
+
+    const StyledTableRow = styled(TableRow)(({ theme }) => ({
+        '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+        },
+        // hide last border
+        '&:last-child td, &:last-child th': {
+        border: 0,
+        },
+    }));
+
     // fetches player list of individual team and push to another component to map over them
     const fetchTeamPlayers = (team) => {
         console.log('fetching team players in teams.jsx: ', team);
@@ -80,51 +109,68 @@ function Teams() {
     return (
         <>
             <div>
-                <h2>Teams Page</h2>
+                <h2>Create Teams</h2>
                 <form onSubmit={addTeam}>
-                    <input 
-                    id='ownerName-input'
-                    type='text'
-                    placeholder='Team Owner...'
-                    value={ownerName}
-                    required
-                    onChange={(event) => {
-                        setOwnerName(event.target.value);
-                    }}             
-                    >               
-                    </input>
-                    <input
-                    id='rosterSize-input'
-                    type='number'
-                    placeholder='Roster Size...'
-                    value={rosterSize}
-                    required
-                    onChange={(event) => {
-                        setRosterSize(event.target.value);
-                    }}             
-                    >               
-                    </input>
-                    <input
-                    id='teamSalary-input'
-                    type='number'
-                    placeholder='Team Salary...'
-                    value={teamSalary}
-                    required
-                    onChange={(event) => {
-                        setTeamSalary(event.target.value);
-                    }}             
-                    >               
-                    </input>
-                    <input
-                    id='profileImage-input'
-                    type='text'
-                    placeholder='Image URL...'
-                    value={profileImage}
-                    onChange={(event) => {
-                        setProfileImage(event.target.value);
-                    }}             
-                    >               
-                    </input>
+                    <Box
+                        component="form"
+                        sx={{
+                            '& .MuiTextField-root': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <TextField
+                            label="Team Owner"
+                            id='ownerName-input'
+                            type='text'
+                            value={ownerName}
+                            required
+                            onChange={(event) => {
+                                setOwnerName(event.target.value);
+                            }}    
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                        <TextField
+                            label="Roster Size"
+                            type='number'
+                            id='rosterSize-input'
+                            value={rosterSize}
+                            required
+                            onChange={(event) => {
+                                setRosterSize(event.target.value);
+                            }} 
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                        <TextField
+                            label="Team Salary"
+                            id='teamSalary-input'
+                            type='number'
+                            value={teamSalary}
+                            required
+                            onChange={(event) => {
+                                setTeamSalary(event.target.value);
+                            }}  
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                        <TextField 
+                            label="Image URL" 
+                            id='profileImage-input'
+                            type='text'
+                            value={profileImage}
+                            onChange={(event) => {
+                                setProfileImage(event.target.value);
+                            }} 
+                            InputLabelProps={{
+                                shrink: true,
+                            }}    
+                        />
+                    </Box>
                     <Box sx={{ '& button': { m: 1 } }}>
                     <Button variant="contained" type='submit' size="small">Add Team</Button>
                     </Box>
@@ -157,6 +203,28 @@ function Teams() {
             })}
             </table>
             </div>
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                    <TableHead>
+                    <TableRow>
+                        <StyledTableCell>Team Photo</StyledTableCell>
+                        <StyledTableCell align="left">Team Name</StyledTableCell>
+                        <StyledTableCell align="left">Roster Size</StyledTableCell>
+                        <StyledTableCell align="left">Team Salary</StyledTableCell>
+                    </TableRow>
+                    </TableHead>
+                    <TableBody>
+                    {teams.map((row) => (
+                        <StyledTableRow key={row.profile_image}>
+                        <StyledTableCell component="th" scope="row"><Stack direction="row" spacing={2}><Avatar alt="team photo" src={row.profile_image} sx={{ width: 75, height: 75 }}/></Stack></StyledTableCell>
+                        <StyledTableCell align="left">{row.owner_name}</StyledTableCell>
+                        <StyledTableCell align="left">{row.roster_size}</StyledTableCell>
+                        <StyledTableCell align="left">{row.team_salary}</StyledTableCell>
+                        </StyledTableRow>
+                    ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </>
     );
 }
