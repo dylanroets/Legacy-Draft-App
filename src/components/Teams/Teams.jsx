@@ -7,6 +7,14 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -81,30 +89,8 @@ function Teams() {
     return (
         <>
             <div>
-                <h2>Teams Page</h2>
+                <h2>Create Teams</h2>
                 <form onSubmit={addTeam}>
-                    <input 
-                    id='ownerName-input'
-                    type='text'
-                    placeholder='Team Owner...'
-                    value={ownerName}
-                    required
-                    onChange={(event) => {
-                        setOwnerName(event.target.value);
-                    }}             
-                    >               
-                    </input>
-                    <input
-                    id='rosterSize-input'
-                    type='number'
-                    placeholder='Roster Size...'
-                    value={rosterSize}
-                    required
-                    onChange={(event) => {
-                        setRosterSize(event.target.value);
-                    }}             
-                    >               
-                    </input>
                     <Box
                         component="form"
                         sx={{
@@ -112,31 +98,57 @@ function Teams() {
                         }}
                         noValidate
                         autoComplete="off"
-                        >
-                    <TextField
-                    label="Team Salary"
-                    id='teamSalary-input'
-                    type='number'
-                    value={teamSalary}
-                    required
-                    onChange={(event) => {
-                        setTeamSalary(event.target.value);
-                    }}  
-                    InputLabelProps={{
-                        shrink: true,
-                    }}
-                    />
-                    <TextField 
-                        label="Image URL" 
-                        id='profileImage-input'
-                        type='text'
-                        value={profileImage}
-                        onChange={(event) => {
-                            setProfileImage(event.target.value);
-                        }} 
-                        InputLabelProps={{
-                            shrink: true,
-                        }}    
+                    >
+                        <TextField
+                            label="Team Owner"
+                            id='ownerName-input'
+                            type='text'
+                            value={ownerName}
+                            required
+                            onChange={(event) => {
+                                setOwnerName(event.target.value);
+                            }}    
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                        <TextField
+                            label="Roster Size"
+                            type='number'
+                            id='rosterSize-input'
+                            value={rosterSize}
+                            required
+                            onChange={(event) => {
+                                setRosterSize(event.target.value);
+                            }} 
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                        <TextField
+                            label="Team Salary"
+                            id='teamSalary-input'
+                            type='number'
+                            value={teamSalary}
+                            required
+                            onChange={(event) => {
+                                setTeamSalary(event.target.value);
+                            }}  
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                        <TextField 
+                            label="Image URL" 
+                            id='profileImage-input'
+                            type='text'
+                            value={profileImage}
+                            onChange={(event) => {
+                                setProfileImage(event.target.value);
+                            }} 
+                            InputLabelProps={{
+                                shrink: true,
+                            }}    
                         />
                     </Box>
                     <Box sx={{ '& button': { m: 1 } }}>
