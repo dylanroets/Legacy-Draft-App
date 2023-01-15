@@ -71,6 +71,26 @@ function Teams() {
         })
     }
 
+    const StyledTableCell = styled(TableCell)(({ theme }) => ({
+        [`&.${tableCellClasses.head}`]: {
+            backgroundColor: theme.palette.common.black,
+            color: theme.palette.common.white,
+        },
+        [`&.${tableCellClasses.body}`]: {
+            fontSize: 14,
+        },
+    }));
+
+    const StyledTableRow = styled(TableRow)(({ theme }) => ({
+        '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.action.hover,
+        },
+        // hide last border
+        '&:last-child td, &:last-child th': {
+        border: 0,
+        },
+    }));
+
     // fetches player list of individual team and push to another component to map over them
     const fetchTeamPlayers = (team) => {
         console.log('fetching team players in teams.jsx: ', team);
@@ -183,6 +203,28 @@ function Teams() {
             })}
             </table>
             </div>
+            <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                    <TableHead>
+                    <TableRow>
+                        <StyledTableCell>Team Photo</StyledTableCell>
+                        <StyledTableCell align="left">Team Name</StyledTableCell>
+                        <StyledTableCell align="left">Roster Size</StyledTableCell>
+                        <StyledTableCell align="left">Team Salary</StyledTableCell>
+                    </TableRow>
+                    </TableHead>
+                    <TableBody>
+                    {teams.map((row) => (
+                        <StyledTableRow key={row.profile_image}>
+                        <StyledTableCell component="th" scope="row"><Stack direction="row" spacing={2}><Avatar alt="team photo" src={row.profile_image} sx={{ width: 75, height: 75 }}/></Stack></StyledTableCell>
+                        <StyledTableCell align="left">{row.owner_name}</StyledTableCell>
+                        <StyledTableCell align="left">{row.roster_size}</StyledTableCell>
+                        <StyledTableCell align="left">{row.team_salary}</StyledTableCell>
+                        </StyledTableRow>
+                    ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </>
     );
 }
