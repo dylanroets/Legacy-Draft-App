@@ -6,6 +6,7 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -104,27 +105,40 @@ function Teams() {
                     }}             
                     >               
                     </input>
-                    <input
+                    <Box
+                        component="form"
+                        sx={{
+                            '& .MuiTextField-root': { m: 1, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                        >
+                    <TextField
+                    label="Team Salary"
                     id='teamSalary-input'
                     type='number'
-                    placeholder='Team Salary...'
                     value={teamSalary}
                     required
                     onChange={(event) => {
                         setTeamSalary(event.target.value);
-                    }}             
-                    >               
-                    </input>
-                    <input
-                    id='profileImage-input'
-                    type='text'
-                    placeholder='Image URL...'
-                    value={profileImage}
-                    onChange={(event) => {
-                        setProfileImage(event.target.value);
-                    }}             
-                    >               
-                    </input>
+                    }}  
+                    InputLabelProps={{
+                        shrink: true,
+                    }}
+                    />
+                    <TextField 
+                        label="Image URL" 
+                        id='profileImage-input'
+                        type='text'
+                        value={profileImage}
+                        onChange={(event) => {
+                            setProfileImage(event.target.value);
+                        }} 
+                        InputLabelProps={{
+                            shrink: true,
+                        }}    
+                        />
+                    </Box>
                     <Box sx={{ '& button': { m: 1 } }}>
                     <Button variant="contained" type='submit' size="small">Add Team</Button>
                     </Box>
