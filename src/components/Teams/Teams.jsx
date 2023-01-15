@@ -73,7 +73,7 @@ function Teams() {
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
-            backgroundColor: theme.palette.common.black,
+            backgroundColor: '#3085d6',
             color: theme.palette.common.white,
         },
         [`&.${tableCellClasses.body}`]: {
@@ -91,6 +91,8 @@ function Teams() {
         },
     }));
 
+
+
     // fetches player list of individual team and push to another component to map over them
     const fetchTeamPlayers = (team) => {
         console.log('fetching team players in teams.jsx: ', team);
@@ -104,7 +106,6 @@ function Teams() {
         dispatch({ type: 'FETCH_TEAM_INFO', payload: team.id });
         history.push('/edit-team-info/' + team.id);
     }
-
 
     return (
         <>
@@ -205,7 +206,7 @@ function Teams() {
             </div>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
-                    <TableHead>
+                    <TableHead sx={{backgroundColor:'#3085d6'}}>
                     <TableRow>
                         <StyledTableCell>Team Photo</StyledTableCell>
                         <StyledTableCell align="left">Team Name</StyledTableCell>
@@ -216,7 +217,7 @@ function Teams() {
                     <TableBody>
                     {teams.map((row) => (
                         <StyledTableRow key={row.profile_image}>
-                        <StyledTableCell component="th" scope="row"><Stack direction="row" spacing={2}><Avatar alt="team photo" src={row.profile_image} sx={{ width: 75, height: 75 }}/></Stack></StyledTableCell>
+                        <StyledTableCell component="th" scope="row"><Stack direction="row" spacing={2}><Avatar alt="team photo" src={row.profile_image} sx={{ width: 60, height: 60 }}/></Stack></StyledTableCell>
                         <StyledTableCell align="left">{row.owner_name}</StyledTableCell>
                         <StyledTableCell align="left">{row.roster_size}</StyledTableCell>
                         <StyledTableCell align="left">{row.team_salary}</StyledTableCell>
