@@ -79,9 +79,10 @@ function Teams() {
         [`&.${tableCellClasses.head}`]: {
             backgroundColor: '#1e88e5',
             color: theme.palette.common.white,
+            fontSize: 18
         },
         [`&.${tableCellClasses.body}`]: {
-            fontSize: 14,
+            fontSize: 18,
         },
     }));
 
@@ -177,7 +178,7 @@ function Teams() {
                         />
                     </Box>
                     <Box sx={{ '& button': { m: 1 } }}>
-                    <Button variant="contained" type='submit' size="small">Add Team</Button>
+                    <Button variant="contained" type='submit' size="large">Add Team</Button>
                     </Box>
                 </form>
             </div>
