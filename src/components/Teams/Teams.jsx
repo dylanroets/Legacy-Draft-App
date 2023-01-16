@@ -15,6 +15,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Fab from '@mui/material/Fab';
+import EditIcon from '@mui/icons-material/Edit';
+import NavigationIcon from '@mui/icons-material/Navigation';
+import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
@@ -73,11 +77,12 @@ function Teams() {
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
-            backgroundColor: theme.palette.common.black,
+            backgroundColor: '#1e88e5',
             color: theme.palette.common.white,
+            fontSize: 18
         },
         [`&.${tableCellClasses.body}`]: {
-            fontSize: 14,
+            fontSize: 18,
         },
     }));
 
@@ -90,6 +95,8 @@ function Teams() {
         border: 0,
         },
     }));
+
+
 
     // fetches player list of individual team and push to another component to map over them
     const fetchTeamPlayers = (team) => {
@@ -104,7 +111,6 @@ function Teams() {
         dispatch({ type: 'FETCH_TEAM_INFO', payload: team.id });
         history.push('/edit-team-info/' + team.id);
     }
-
 
     return (
         <>
@@ -172,36 +178,9 @@ function Teams() {
                         />
                     </Box>
                     <Box sx={{ '& button': { m: 1 } }}>
-                    <Button variant="contained" type='submit' size="small">Add Team</Button>
+                    <Button variant="contained" type='submit' size="large">Add Team</Button>
                     </Box>
                 </form>
-            </div>
-            <div>
-            <table>
-                <thead>
-                    <tr>
-                        <td>Team Photo</td>
-                        <td>Team Name</td>
-                        <td>Roster Size</td>
-                        <td>Team Salary</td>
-                    </tr>
-                </thead>
-            {teams.map((team, i)=> {
-                return (
-                <tbody team={team} key={i}>
-                    <tr>
-                        <td><Stack direction="row" spacing={2}><Avatar alt="team photo" src={team.profile_image} sx={{ width: 75, height: 75 }}/></Stack></td>
-                        <td>{team.owner_name}</td>
-                        <td>{team.roster_size}</td>
-                        <td>{team.team_salary}</td>
-                        <td><button onClick={() => editTeamInfo(team)}>Edit</button></td>
-                        <td><button id='view-players' onClick={() => fetchTeamPlayers(team)}>View Team</button></td>
-                        <td><button id='delete' onClick={() => deleteTeam(team.id)}>Delete</button></td>
-                    </tr>
-                </tbody>
-                );
-            })}
-            </table>
             </div>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -211,15 +190,30 @@ function Teams() {
                         <StyledTableCell align="left">Team Name</StyledTableCell>
                         <StyledTableCell align="left">Roster Size</StyledTableCell>
                         <StyledTableCell align="left">Team Salary</StyledTableCell>
+                        <StyledTableCell align="right"></StyledTableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
                     {teams.map((row) => (
                         <StyledTableRow key={row.profile_image}>
-                        <StyledTableCell component="th" scope="row"><Stack direction="row" spacing={2}><Avatar alt="team photo" src={row.profile_image} sx={{ width: 75, height: 75 }}/></Stack></StyledTableCell>
+                        <StyledTableCell component="th" scope="row"><Stack direction="row" spacing={2}><Avatar alt="team photo" src={row.profile_image} sx={{ width: 71, height: 71 }}/></Stack></StyledTableCell>
                         <StyledTableCell align="left">{row.owner_name}</StyledTableCell>
                         <StyledTableCell align="left">{row.roster_size}</StyledTableCell>
                         <StyledTableCell align="left">{row.team_salary}</StyledTableCell>
+                        <StyledTableRow position='right' align='right'>
+                            <Box sx={{ '& > :not(style)': { m: 4 } }}>
+                                <Fab onClick={() => editTeamInfo(row)} size='medium' variant="extended" color="primary" aria-label="add">
+                                    <EditIcon sx={{ mr: .8 }} />Edit
+                                </Fab>
+                                <Fab onClick={() => fetchTeamPlayers(row)} size='medium' variant="extended">
+                                    <NavigationIcon sx={{ mr: 1 , color: 'primary' }} />
+                                    View Players
+                                </Fab>
+                                <Fab onClick={() => deleteTeam(row.id)} size='medium' variant="extended" sx={{':hover': { bgcolor: 'rgb(210, 0, 0)', color: 'white'}, backgroundColor: 'rgb(240, 0, 0)', color: 'white'}} aria-label="edit">
+                                    <DeleteForeverRoundedIcon sx={{ mr: 1 }}/>Delete
+                                </Fab>
+                            </Box>
+                        </StyledTableRow>
                         </StyledTableRow>
                     ))}
                     </TableBody>
