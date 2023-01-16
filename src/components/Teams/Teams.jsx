@@ -118,17 +118,16 @@ function Teams() {
                 <h2>Create Teams</h2>
                 <form onSubmit={addTeam}>
                     <Box
-                        component="form"
                         sx={{
                             '& .MuiTextField-root': { m: 1, width: '25ch' },
                         }}
                         noValidate
-                        autoComplete="off"
                     >
                         <TextField
                             label="Team Owner"
                             id='ownerName-input'
                             type='text'
+                            autoComplete='on'
                             value={ownerName}
                             required
                             onChange={(event) => {
@@ -168,6 +167,7 @@ function Teams() {
                             label="Image URL" 
                             id='profileImage-input'
                             type='text'
+                            autoComplete='on'
                             value={profileImage}
                             onChange={(event) => {
                                 setProfileImage(event.target.value);
@@ -194,14 +194,14 @@ function Teams() {
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {teams.map((row) => (
-                        <StyledTableRow key={row.profile_image}>
-                        <StyledTableCell align="center" component="th" scope="row"><Stack direction="row" spacing={2}><Avatar alt="team photo" src={row.profile_image} sx={{ width: 71, height: 71 }}/></Stack></StyledTableCell>
+                    {teams.map((row, i) => (
+                        <StyledTableRow key={i}>
+                        <StyledTableCell align="center" component="th" scope="row"><Stack direction="row" spacing={2}><Avatar alt="team photo" src={row.profile_image} sx={{ width: 95, height: 95 }}/></Stack></StyledTableCell>
                         <StyledTableCell align="left">{row.owner_name}</StyledTableCell>
                         <StyledTableCell align="center">{row.roster_size}</StyledTableCell>
                         <StyledTableCell align="center">{row.team_salary}</StyledTableCell>
                         <StyledTableCell position='right' align='right'>
-                            <Box sx={{ '& > :not(style)': { m: 4 } }}>
+                            <Box sx={{ '& > :not(style)': { m: 2 } }}>
                                 <Fab onClick={() => editTeamInfo(row)} size='small' variant="extended" color="primary" aria-label="add">
                                     <EditIcon sx={{ mr: .8 }} />Edit
                                 </Fab>

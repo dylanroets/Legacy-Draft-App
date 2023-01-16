@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Swal from 'sweetalert2'
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import Autocomplete from '@mui/material/Autocomplete';
+import Box from '@mui/material/Box';
 
 function PlayerSelector() {
 
 const searchResult = useSelector((store) => store.search);
 const dispatch = useDispatch();
+
+const topPlayers = [{ player: 'Tom Brady'}, { player: 'Aaron Donald'}, { player: 'Aaron Rodgers'}, { player: 'Cooper Kupp'}, { player: 'Jonathan Taylor'}, { player: 'TJ Watt'}, { player: 'Davante Adams'}, { player: 'Patrick Mahomes'}, { player: 'Jalen Ramsey'}, { player: 'Travis Kelce'}, { player: 'Myles Garrett'}, { player: 'Derrick Henry'}, { player: 'Josh Allen'}, { player: 'Trent Williams'}, { player: 'Tyreek Hill'}, { player: 'Justin Jefferson'}, { player: 'Shaquille Leonard'}, { player: 'Deebo Samuel' }, { player: 'Joe Burrow'}, { player: 'George Kittle'}, { player: 'Trevon Diggs'}, { player: 'JaMarr Chase'}, { player: 'Stefon Diggs'}, { player: 'Matthew Stafford'}, { player: 'Dalvin Cook'}, { player: 'Nick Chubb'}, { player: 'Keenan Allen'}, { player: 'Lamar Jackson'}, { player: 'DeAndre Hopkins'}, { player: 'Joe Mixon'}, { player: 'Chris Jones'}, { player: 'Justin Herbert'}, { player: 'Tristan Wirfs'}, { player: 'Cameron Heyward'}, { player: 'Dak Prescott'}, { player: 'Austin Ekeler'}, { player: 'Alvin Kamara'}, { player: 'Mike Evans'}, { player: 'Kyler Murray'}, { player: 'Darren Waller'}, { player: 'Russell Wilson'}, { player: 'Chandler Jones'}, { player: 'Jaylen Waddle'}, { player: 'Derek Carr'}, { player: 'James Conner'}, { player: 'Mac Jones'}, { player: 'Odell Beckham Jr'}, { player: 'Kyle Pitts'}, { player: 'Justin Tucker'}, { player: 'CeeDee Lamb'}, { player: 'Leonard Williams'}, { player: 'David Montgomery'}, { player: 'Kirk Cousins'}, { player: 'Kyle Juszczyk'}]
 
 const [playerSearch, setPlayerSearch] = useState('');
 const [teamId, setNewTeamId]= useState('');
@@ -127,3 +133,6 @@ const addPlayer = (player) => {
 }
 
 export default PlayerSelector;
+
+
+
