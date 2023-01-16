@@ -186,34 +186,34 @@ function Teams() {
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>
                     <TableRow>
-                        <StyledTableCell>Team Photo</StyledTableCell>
+                        <StyledTableCell align="left">Team Photo</StyledTableCell>
                         <StyledTableCell align="left">Team Name</StyledTableCell>
-                        <StyledTableCell align="left">Roster Size</StyledTableCell>
-                        <StyledTableCell align="left">Team Salary</StyledTableCell>
+                        <StyledTableCell align="center">Roster Size</StyledTableCell>
+                        <StyledTableCell align="center">Team Salary</StyledTableCell>
                         <StyledTableCell align="right"></StyledTableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
                     {teams.map((row) => (
                         <StyledTableRow key={row.profile_image}>
-                        <StyledTableCell component="th" scope="row"><Stack direction="row" spacing={2}><Avatar alt="team photo" src={row.profile_image} sx={{ width: 71, height: 71 }}/></Stack></StyledTableCell>
+                        <StyledTableCell align="center" component="th" scope="row"><Stack direction="row" spacing={2}><Avatar alt="team photo" src={row.profile_image} sx={{ width: 71, height: 71 }}/></Stack></StyledTableCell>
                         <StyledTableCell align="left">{row.owner_name}</StyledTableCell>
-                        <StyledTableCell align="left">{row.roster_size}</StyledTableCell>
-                        <StyledTableCell align="left">{row.team_salary}</StyledTableCell>
-                        <StyledTableRow position='right' align='right'>
+                        <StyledTableCell align="center">{row.roster_size}</StyledTableCell>
+                        <StyledTableCell align="center">{row.team_salary}</StyledTableCell>
+                        <StyledTableCell position='right' align='right'>
                             <Box sx={{ '& > :not(style)': { m: 4 } }}>
-                                <Fab onClick={() => editTeamInfo(row)} size='medium' variant="extended" color="primary" aria-label="add">
+                                <Fab onClick={() => editTeamInfo(row)} size='small' variant="extended" color="primary" aria-label="add">
                                     <EditIcon sx={{ mr: .8 }} />Edit
                                 </Fab>
-                                <Fab onClick={() => fetchTeamPlayers(row)} size='medium' variant="extended">
+                                <Fab onClick={() => fetchTeamPlayers(row)} size='small' variant="extended">
                                     <NavigationIcon sx={{ mr: 1 , color: 'primary' }} />
                                     View Players
                                 </Fab>
-                                <Fab onClick={() => deleteTeam(row.id)} size='medium' variant="extended" sx={{':hover': { bgcolor: 'rgb(210, 0, 0)', color: 'white'}, backgroundColor: 'rgb(240, 0, 0)', color: 'white'}} aria-label="edit">
+                                <Fab onClick={() => deleteTeam(row.id)} size='small' variant="extended" sx={{':hover': { bgcolor: 'rgb(210, 0, 0)', color: 'white'}, backgroundColor: 'rgb(240, 0, 0)', color: 'white'}} aria-label="edit">
                                     <DeleteForeverRoundedIcon sx={{ mr: 1 }}/>Delete
                                 </Fab>
                             </Box>
-                        </StyledTableRow>
+                        </StyledTableCell>
                         </StyledTableRow>
                     ))}
                     </TableBody>
