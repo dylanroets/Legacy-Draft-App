@@ -89,7 +89,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
               <TableBody>
               {store.map((row) => (
                   <StyledTableRow key={row.player_image}>
-                  <StyledTableCell component="th" scope="row"><Stack direction="row" spacing={2}><Avatar alt="player photo" src={row.player_image} sx={{ width: 71, height: 71 }}/></Stack></StyledTableCell>
+                  <StyledTableCell component="th" scope="row"><Stack direction="row" spacing={2}><Avatar alt="player photo" src={row.player_image} sx={{ width: 90, height: 90 }}/></Stack></StyledTableCell>
                   <StyledTableCell align="left">{row.player_name}</StyledTableCell>
                   <StyledTableCell align="center">{row.player_position}</StyledTableCell>
                   <StyledTableCell align="center">{row.player_group}</StyledTableCell>
@@ -97,7 +97,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
                   <StyledTableCell align="center">{row.player_height}</StyledTableCell>
                   <StyledTableCell align="center">{row.player_weight}</StyledTableCell>
                   <StyledTableCell position='right' align='right'>
-                      <Box sx={{ '& > :not(style)': { m: 4 } }}>
+                      <Box sx={{ '& > :not(style)': { m: 2 } }}>
                           <Fab onClick={() => backToTeams()} size='small' variant="extended">
                               <NavigationIcon sx={{ mr: 1 , color: 'primary' }} />
                               View Teams
