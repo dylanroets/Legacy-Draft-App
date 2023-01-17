@@ -1,4 +1,5 @@
 import React from 'react';
+import Avatar from '@mui/material/Avatar';
 
 // This is one of our simplest components
 // It doesn't have local state,
@@ -8,23 +9,37 @@ import React from 'react';
 function AboutPage() {
   return (
     <div className="container">
-      <h2>About</h2>
-      <div>
-        <h3>Application Overview</h3>
-      </div>
-      <div className="grid-col grid-col_8">
-        <img style={{float: 'left', marginRight: -70, marginLeft: -90}} width={500} src="/images/app-logo.png" />
-        <p> I’ve been a part of a live in-person fantasy football draft for years, but every year dread 
-          sets in before the season starts! I remember I don’t have an efficient way to keep track of which 
-          teams got which players during the chaotic draft party. If we don’t get exact rosters 
-          it can create huge headaches for years to come.
+      <div className="">
+        <div>
+        <img style={{float: 'left', marginRight: -70, marginLeft: -90, marginBottom: 100}} width={500} src="/images/app-logo.png" />
+        <Avatar label="Dylan" alt="player photo" src="/images/IMG_4746.JPG" sx={{ width: 80, height: 80 }}/>
+        <a href="https://github.com/DylanRoets" target="_blank" rel="noreferrer">
+          <img width={40}  src="/images/github_logoicon.png"/>
+        </a>
+        <a href="https://www.linkedin.com/in/dylan-roets-327848255/" target="_blank" rel="noreferrer">
+          <img width={40}  src="/images/linkedin_icon.png"/>
+        </a>
+        <h4>Dylan Roets - Full Stack Software Engineer</h4>
+        </div>
+
+        <p>⦿ LEGACY🏈DRAFT was built to handle fast pace fantasy football live auction drafts, <br></br>
+          that way even if your party is out of order, your draft doesn't have to be!
         </p>
-        <p> This is where Legacy Draft App saves your big day! The perfect companion to any live in-person draft. 
-          It allows a user to create their league settings and add the necessary number of teams, 
-          along with allocating the players each team starts with. Once the draft starts they can 
-          quickly search for players as the draft flies by; easily adding them to the teams that drafted 
-          them along with their associated stats. At the end of the day the goal is to have fun during your
-          draft party, Legacy Draft will help keep it that way!
+        <img style={{float: 'right', marginRight: 400, marginLeft: 0}} width={500} src="/images/technologies-image.png" />
+        <h4> Technologies Used:</h4>
+        <p>⦿ React ⦿ node.js</p>
+        <p>⦿ Express ⦿ JavaScript</p>
+        <p>⦿ PostgreSQL ⦿ Redux-Saga</p>
+        <p>⦿ Postman ⦿ MUI ⦿ CSS ⦿ HTML</p>
+        <p>⦿ API - AMERICAN-FOOTBALL API</p>
+        </div>
+        <div>
+          <h4>🌟Special Thanks🌟</h4>
+          <p>
+            ✨Prime Digital Academy <br />
+            ✨Instructors: Dane, Liz, & Key <br />
+            ✨Shawl Cohort! <br />
+            ✨My Loving Family Hannah & Lola
           </p>
         </div>
     </div>

@@ -107,7 +107,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
   return (
     <>
-      <h2>Player Selector Page</h2>
+      <h2>Search the NFL</h2>
       <form onSubmit={searchPlayers}>
         <Box
           sx={{
@@ -125,55 +125,13 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
             renderInput={(params) => <TextField {...params} label="Search Players" />}
           />
           <Button type='submit' size='large' variant="contained">
-            <PersonSearchIcon sx={{ mr: 1 , color: 'primary' }} />
+            <PersonSearchIcon sx={{ mr: 2 , color: 'primary' }} />
             Search Players
           </Button>
         </Stack>
         </Box>
       </form>
-      <h2>Player Search</h2>
-      {/* <div>
-        <table>
-          <thead>
-            <tr>
-              <td>Player Photo</td>
-              <td>Player Name</td>
-              <td>Position</td>
-              <td>Player Group</td>
-              <td>Age</td>
-              <td>Height</td>
-              <td>Weight</td>
-              <td>Drafted Team</td>
-            </tr>
-          </thead>
-            {searchResult.map((player, i)=> {
-              return (
-              <tbody key={i}>
-                <tr>
-                  <td><img src={player.image} height={80} width={110} alt="team-photo" /></td>
-                  <td>{player.name}</td>
-                  <td>{player.position}</td>
-                  <td>{player.group}</td>
-                  <td>{player.age}</td>
-                  <td>{player.height}</td>
-                  <td>{player.weight}</td>
-                  <td>
-                  <select name="teams" id="teams" onChange={(event) => setNewTeamId(event.target.value)}>
-                        <option key={i} value="">Select a Team</option>
-                    {teams.map((team, i) => {
-                      return (
-                        <option key={i} value={team.id}>{team.owner_name}</option>
-                      )}
-                    )}
-                    </select>
-                  </td>
-                  <td><button id='add-player' onClick={() => addPlayer(player)}>Add</button></td>
-                </tr>
-              </tbody>
-              );
-            })}
-        </table>
-      </div> */}
+      <h2>Player Results</h2>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
