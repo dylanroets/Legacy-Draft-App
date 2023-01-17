@@ -49,6 +49,7 @@ function TeamEditor() {
     })
   }
 
+  //Mui table styling
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: '#1e88e5',

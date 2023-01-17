@@ -4,7 +4,18 @@ import Swal from 'sweetalert2'
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Autocomplete from '@mui/material/Autocomplete';
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
+import Button from '@mui/material/Button';
+import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import { styled } from '@mui/material/styles';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 function PlayerSelector() {
 
@@ -34,8 +45,30 @@ const searchPlayers = (event) => {
   setPlayerSearch('');
 };
 
+  //Mui table styling
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+        backgroundColor: '#1e88e5',
+        color: theme.palette.common.white,
+        fontSize: 18
+    },
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: 18,
+    },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    '&:last-child td, &:last-child th': {
+    border: 0,
+    },
+}));
+
 //Pulling player specific data for adding players to teams in the database
-const addPlayer = (player) => {
+  const addPlayer = (player) => {
   const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -68,68 +101,118 @@ const addPlayer = (player) => {
   });
 }
 
-    return (
-        <>
-          <h2>Player Selector Page</h2>
-          <form onSubmit={searchPlayers}>
-                <h2>Search Players</h2>
-                <input
-                    className="search-field"
-                    type="text"
-                    required
-                    value={playerSearch}
-                    onChange={(event) => {
-                    setPlayerSearch(event.target.value);
-                    }}
-                    placeholder="Search Players..."
-                />
-                <button type='submit'>Search</button>
-          </form>
-          <h2>Player Search</h2>
-          <div>
-            <table>
-              <thead>
+  return (
+    <>
+      <h2>Player Selector Page</h2>
+      <form onSubmit={searchPlayers}>
+        <Box
+          sx={{
+              '& .MuiTextField-root': { m: 1, width: '25ch' },
+          }}
+          noValidate
+        >
+        <Stack spacing={2} sx={{ width: 300 }}>
+          <Autocomplete
+            className="search-field"
+            freeSolo
+            value={playerSearch}
+            onChange={(event, newPlayer) => { setPlayerSearch(newPlayer); }}
+            options={topPlayers.map((event) => event.player)}
+            renderInput={(params) => <TextField {...params} label="Search Players" />}
+          />
+          <Button type='submit' size='large' variant="contained">
+            <PersonSearchIcon sx={{ mr: 1 , color: 'primary' }} />
+            Search Players
+          </Button>
+        </Stack>
+        </Box>
+      </form>
+      <h2>Player Search</h2>
+      {/* <div>
+        <table>
+          <thead>
+            <tr>
+              <td>Player Photo</td>
+              <td>Player Name</td>
+              <td>Position</td>
+              <td>Player Group</td>
+              <td>Age</td>
+              <td>Height</td>
+              <td>Weight</td>
+              <td>Drafted Team</td>
+            </tr>
+          </thead>
+            {searchResult.map((player, i)=> {
+              return (
+              <tbody key={i}>
                 <tr>
-                  <td>Player Photo</td>
-                  <td>Player Name</td>
-                  <td>Position</td>
-                  <td>Player Group</td>
-                  <td>Age</td>
-                  <td>Height</td>
-                  <td>Weight</td>
-                  <td>Drafted Team</td>
+                  <td><img src={player.image} height={80} width={110} alt="team-photo" /></td>
+                  <td>{player.name}</td>
+                  <td>{player.position}</td>
+                  <td>{player.group}</td>
+                  <td>{player.age}</td>
+                  <td>{player.height}</td>
+                  <td>{player.weight}</td>
+                  <td>
+                  <select name="teams" id="teams" onChange={(event) => setNewTeamId(event.target.value)}>
+                        <option key={i} value="">Select a Team</option>
+                    {teams.map((team, i) => {
+                      return (
+                        <option key={i} value={team.id}>{team.owner_name}</option>
+                      )}
+                    )}
+                    </select>
+                  </td>
+                  <td><button id='add-player' onClick={() => addPlayer(player)}>Add</button></td>
                 </tr>
-              </thead>
-                {searchResult.map((player, i)=> {
-                  return (
-                  <tbody key={i}>
-                    <tr>
-                      <td><img src={player.image} height={80} width={110} alt="team-photo" /></td>
-                      <td>{player.name}</td>
-                      <td>{player.position}</td>
-                      <td>{player.group}</td>
-                      <td>{player.age}</td>
-                      <td>{player.height}</td>
-                      <td>{player.weight}</td>
-                      <td>
-                      <select name="teams" id="teams" onChange={(event) => setNewTeamId(event.target.value)}>
-                            <option key={i} value="">Select a Team</option>
-                        {teams.map((team, i) => {
-                          return (
-                            <option key={i} value={team.id}>{team.owner_name}</option>
-                          )}
-                        )}
-                        </select>
-                      </td>
-                      <td><button id='add-player' onClick={() => addPlayer(player)}>Add</button></td>
-                    </tr>
-                  </tbody>
-                  );
-                })}
-            </table>
-          </div>
-        </>
-    );
+              </tbody>
+              );
+            })}
+        </table>
+      </div> */}
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableHead>
+            <TableRow>
+                <StyledTableCell></StyledTableCell>
+                <StyledTableCell align="left">Player Name</StyledTableCell>
+                <StyledTableCell align="center">Position</StyledTableCell>
+                <StyledTableCell align="center">Player Group</StyledTableCell>
+                <StyledTableCell align="center">Age</StyledTableCell>
+                <StyledTableCell align="center">Height</StyledTableCell>
+                <StyledTableCell align="center">Weight</StyledTableCell>
+                <StyledTableCell></StyledTableCell>
+                <StyledTableCell></StyledTableCell>
+            </TableRow>
+            </TableHead>
+            <TableBody>
+            {searchResult.map((row, i) => (
+                <StyledTableRow key={i}>
+                <StyledTableCell component="th" scope="row"><Stack direction="row" spacing={2}><Avatar alt="player photo" src={row.image} sx={{ width: 90, height: 90 }}/></Stack></StyledTableCell>
+                <StyledTableCell align="left">{row.name}</StyledTableCell>
+                <StyledTableCell align="center">{row.position}</StyledTableCell>
+                <StyledTableCell align="center">{row.group}</StyledTableCell>
+                <StyledTableCell align="center">{row.age}</StyledTableCell>
+                <StyledTableCell align="center">{row.height}</StyledTableCell>
+                <StyledTableCell align="center">{row.weight}</StyledTableCell>
+                <StyledTableCell align="center">
+                  <select name="teams" id="teams" onChange={(event) => setNewTeamId(event.target.value)}>
+                    <option key={i} value="">Select a Team</option>
+                    {teams.map((team, i) => {
+                      return (
+                        <option key={i} value={team.id}>{team.owner_name}</option>
+                      )}
+                    )}
+                  </select>
+                </StyledTableCell>
+                <StyledTableCell><button id='add-player' onClick={() => addPlayer(row)}>Add</button></StyledTableCell>
+                </StyledTableRow>
+            ))}
+              </TableBody>
+          </Table>
+      </TableContainer>
+    </>
+  );
 }
 
 export default PlayerSelector;
