@@ -77,7 +77,7 @@ function Teams() {
 
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
-            backgroundColor: '#1e88e5',
+            backgroundColor: ' #3d5a80',
             color: theme.palette.common.white,
             fontSize: 18
         },

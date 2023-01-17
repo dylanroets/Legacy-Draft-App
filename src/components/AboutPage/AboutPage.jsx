@@ -36,10 +36,10 @@ function AboutPage() {
         <div>
           <h4>🌟Special Thanks🌟</h4>
           <p>
-            ✨Prime Digital Academy <br />
-            ✨Instructors: Dane, Liz, & Key <br />
-            ✨Shawl Cohort! <br />
-            ✨My Loving Family Hannah & Lola
+            🏫 Prime Digital Academy <br />
+            🧑‍🏫 Instructors: Dane, Key, Kris, & Liz <br />
+            🧑‍🎓 Shawl Cohort! <br />
+            ❤️ My Loving Family Hannah & Lola
           </p>
         </div>
     </div>
