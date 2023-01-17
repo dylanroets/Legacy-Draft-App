@@ -11,7 +11,7 @@ function AboutPage() {
     <div className="container">
       <div className="">
         <div>
-        <img style={{float: 'left', marginRight: -70, marginLeft: -90, marginBottom: 100}} width={500} src="/images/app-logo.png" />
+        <img style={{float: 'left', marginRight: -70, marginLeft: -90, marginBottom: 120}} width={500} src="/images/app-logo.png" />
         <Avatar label="Dylan" alt="player photo" src="/images/IMG_4746.JPG" sx={{ width: 80, height: 80 }}/>
         <a href="https://github.com/DylanRoets" target="_blank" rel="noreferrer">
           <img width={40}  src="/images/github_logoicon.png"/>
