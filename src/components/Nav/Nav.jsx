@@ -11,7 +11,7 @@ function Nav() {
     <div className="nav">
       <img id="frame" width={60} src="/images/app-logo.png" />
       <Link to="/home">
-        <h2 className="nav-title">LEGACY🏈DRAFT</h2>
+        <h2 className='nav-title'>LEGACY🏈DRAFT</h2>
       </Link>
       <div>
         {/* If no user is logged in, show these links */}
