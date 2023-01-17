@@ -11,9 +11,22 @@ function AboutPage() {
       <h2>About</h2>
       <div>
         <h3>Application Overview</h3>
-        <p>I’ve been a part of a live in-person fantasy football draft for years, but every year dread sets in before the season starts. I always remember I don’t have a way to keep track of which teams pay for which players during the chaotic draft party. If we don’t get exact rosters and dollar amounts it can create huge headaches for years to come.</p>
-        <p>This is where Legacy Draft App would be the perfect companion to any live in-person draft. It would allow a user to create their league settings and add the necessary number of teams, along with allocating the salary caps each team starts with. Once the draft starts they could quickly search for players as the draft moves forward and easily add them to teams that drafted them with their associated bid amounts. At the end of the day the goal is to have fun during these unique parties, Legacy Draft App will help keep it that way!</p>
       </div>
+      <div className="grid-col grid-col_8">
+        <img style={{float: 'left', marginRight: -70, marginLeft: -90}} width={500} src="/images/app-logo.png" />
+        <p> I’ve been a part of a live in-person fantasy football draft for years, but every year dread 
+          sets in before the season starts! I remember I don’t have an efficient way to keep track of which 
+          teams got which players during the chaotic draft party. If we don’t get exact rosters 
+          it can create huge headaches for years to come.
+        </p>
+        <p> This is where Legacy Draft App saves your big day! The perfect companion to any live in-person draft. 
+          It allows a user to create their league settings and add the necessary number of teams, 
+          along with allocating the players each team starts with. Once the draft starts they can 
+          quickly search for players as the draft flies by; easily adding them to the teams that drafted 
+          them along with their associated stats. At the end of the day the goal is to have fun during your
+          draft party, Legacy Draft will help keep it that way!
+          </p>
+        </div>
     </div>
   );
 }
