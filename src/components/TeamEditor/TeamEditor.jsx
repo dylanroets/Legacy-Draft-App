@@ -54,10 +54,12 @@ function TeamEditor() {
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: '#3d5a80',
         color: theme.palette.common.white,
-        fontSize: 18
+        fontSize: 18,
+        padding: "12px 40px 12px 40px"
     },
     [`&.${tableCellClasses.body}`]: {
         fontSize: 18,
+        padding: "5px 40px 5px 40px"
     },
 }));
 
@@ -77,7 +79,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
               <TableHead>
               <TableRow>
-                  <StyledTableCell>Player Photo</StyledTableCell>
+                  <StyledTableCell></StyledTableCell>
                   <StyledTableCell align="left">Player Name</StyledTableCell>
                   <StyledTableCell align="center">Position</StyledTableCell>
                   <StyledTableCell align="center">Player Group</StyledTableCell>
