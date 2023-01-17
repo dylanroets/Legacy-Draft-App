@@ -11,17 +11,21 @@ CREATE TABLE "user" (
 
 CREATE TABLE "teams" (
     "id" SERIAL PRIMARY KEY,
-    "user_id" INT REFERENCES "user",
     "owner_name" VARCHAR (80) NOT NULL,
     "roster_size" INT,
-    "profile_image" VARCHAR (2083)
+    "profile_image" VARCHAR (2083),
+    "team_salary" INT
 );
 
 CREATE TABLE "drafted_players" (
-    "player_id" INT,
+	"id" SERIAL PRIMARY KEY,
     "team_id" INT REFERENCES "teams",
-    "player_bid" INT NOT NULL,
+    "player_id" INT,
     "player_name" VARCHAR (255),
-    "player_image" VARCHAR (2083),
-    "player_position" VARCHAR (255)
+    "player_position" VARCHAR (255),
+    "player_group" VARCHAR (255),
+    "player_age" INT,
+    "player_height" VARCHAR (255),
+    "player_weight" VARCHAR (255),
+    "player_image" VARCHAR (2083)
 );
