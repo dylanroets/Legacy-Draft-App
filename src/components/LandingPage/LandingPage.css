@@ -13,6 +13,11 @@ Grid
   align-items: flex-start;
 }
 
+.img-align {
+  float: right;
+  margin: 0;
+}
+
 .grid-col {
   flex: 0 0 auto;
   padding: 0 0.5rem 0.5rem;
