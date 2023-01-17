@@ -16,6 +16,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 function PlayerSelector() {
 
@@ -71,7 +75,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   const addPlayer = (player) => {
   const Toast = Swal.mixin({
     toast: true,
-    position: 'top-end',
+    position: 'bottom-end',
     showConfirmButton: false,
     timer: 3000,
     timerProgressBar: true,
@@ -196,14 +200,24 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
                 <StyledTableCell align="center">{row.height}</StyledTableCell>
                 <StyledTableCell align="center">{row.weight}</StyledTableCell>
                 <StyledTableCell align="center">
-                  <select name="teams" id="teams" onChange={(event) => setNewTeamId(event.target.value)}>
-                    <option key={i} value="">Select a Team</option>
-                    {teams.map((team, i) => {
-                      return (
-                        <option key={i} value={team.id}>{team.owner_name}</option>
+                <Box sx={{ minWidth: 120 }}>
+                  <FormControl fullWidth>
+                    <InputLabel>Team Select</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="team-map"
+                      label="Select Team"
+                      value={teamId}
+                      onChange={(event) => setNewTeamId(event.target.value)}
+                      >
+                      {teams.map((team, i) => {
+                        return (
+                          <MenuItem key={i} value={team.id}>{team.owner_name}</MenuItem>
+                        )}
                       )}
-                    )}
-                  </select>
+                    </Select>
+                  </FormControl>
+                </Box>
                 </StyledTableCell>
                 <StyledTableCell><button id='add-player' onClick={() => addPlayer(row)}>Add</button></StyledTableCell>
                 </StyledTableRow>
@@ -216,6 +230,3 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }
 
 export default PlayerSelector;
-
-
-
