@@ -27,5 +27,5 @@ CREATE TABLE "drafted_players" (
     "player_age" INT,
     "player_height" VARCHAR (255),
     "player_weight" VARCHAR (255),
-    "player_image" VARCHAR (2083)
+    "player_image" VARCHAR (5000)
 );
